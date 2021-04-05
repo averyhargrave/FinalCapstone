@@ -1,6 +1,13 @@
-Begin transaction;
+--0Begin transaction;
 
-drop table if exists landmarks;
+drop table if exists destination_landmark_types;
+drop table if exists open_hours;
+drop table if exists destinations;
+drop table if exists day_of_week;
+drop table if exists landmark_types;
+
+
+
 
 create table destinations
 (
@@ -11,8 +18,8 @@ create table destinations
   city           varchar(10)  DEFAULT 'Cleveland',
   state          char(2)      DEFAULT 'OH',
   zipcode        varchar(10)  NOT NULL,
-  latitude       decimal(8,6) NOT NULL,
-  longitude      decimal(8,6) NOT NULL,
+  latitude       decimal(16,14) NOT NULL,
+  longitude      decimal(16,14) NOT NULL,
   website        varchar(100) NOT NULL,
   constraint pk_destinations primary key (destination_id)
 );
@@ -53,7 +60,7 @@ create table destination_landmark_types
 );
 
   
-rollback;
+
 
 
   
