@@ -19,8 +19,39 @@ create table destinations
 
 create table day_of_week
 (
-  
+  day_id        serial         NOT NULL,
+  name          varchar(10)    NOT NULL,
+  constraint pk_day_of_week    primary key (day_id)
 );
+
+create table open_hours
+(
+  hours_id       serial       NOT NULL,
+  destination_id int          NOT NULL,
+  day_id         int          NOT NULL,
+  open           time,       
+  close          time,
+  constraint pk_open_hours     primary key (hours_id),
+  constraint fk_destination_id foreign key (destination_id) references destinations (destination_id),
+  constraint fk_day_id          foreign key (day_id)         references day_of_week (day_id)
+);
+
+create table landmark_types
+(
+  type_id       serial        NOT NULL,
+  type          varchar(20)   NOT NULL,
+  constraint pk_landmark_types primary key (type_id)
+);
+
+create table destination_landmark_types
+(
+  destination_type_id serial  NOT NULL,
+  destination_id      int     NOT NULL,
+  type_id             int     NOT NULL,
+  constraint fk_destination_id foreign key (destination_id) references destinations (destination_id),
+  constraint fk_type_id        foreign key (type_id)        references landmark_types (type_id)
+);
+
   
 rollback;
 
