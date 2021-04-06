@@ -1,5 +1,6 @@
 package com.techelevator.application.jdbcdao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -17,42 +18,56 @@ public class JDBCDestinationDAO implements DestinationDAO {
 	public JDBCDestinationDAO(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
-	
-	@Override
-	public Destination createDestination(String name, String description, String streetAddress, String city,
-			String zipcode, double latitude, double longitude, String website) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<Destination> findDestinationsByZip(String zipcode) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Destination> list = new ArrayList<>();
+		String sqlGetDestinationByZipcode = "SELECT * " +
+				 					        "FROM destinations " +  
+									        "WHERE zipcode = ? ";
+									
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetDestinationByZipcode, zipcode);
+		while(results.next()) {
+			Destination destination = mapRowToDestination(results);
+			list.add(destination);
+		}
+		return list;
 	}
 
 	@Override
 	public Destination findDestinationByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		Destination destination = new Destination();
+		String sqlGetDestinationByName = "SELECT * " +
+									     "FROM destinations " + 
+								         "WHERE name = ? ";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetDestinationByName, name);
+		if (results.next()) {
+			destination = mapRowToDestination(results);
+		}
+		return destination;
 	}
 
 	@Override
 	public Destination findDestinationById(long destinationId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Destination updateDestination(Destination destinationToUpdate) {
-		// TODO Auto-generated method stub
-		return null;
+		Destination destination = new Destination();
+		String sqlGetDestinationById = "SELECT * " +
+									   "FROM destinations " + 
+								       "WHERE destination_id = ? ";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetDestinationById, destinationId);
+		if (results.next()) {
+			destination = mapRowToDestination(results);
+		}
+		return destination;
 	}
 
 	@Override
 	public void deleteDestination(long destinationId) {
-		// TODO Auto-generated method stub
-		
+		String deleteDestination = "DELETE " +
+								   "FROM destinations " +
+								   "WHERE destination_id = ? ";
+		jdbcTemplate.update(deleteDestination, destinationId);
 	}
 
 	private Destination mapRowToDestination(SqlRowSet results) {
@@ -69,5 +84,6 @@ public class JDBCDestinationDAO implements DestinationDAO {
 		destination.setWebiste(results.getString("website"));
 		return destination;
 	}
-	
+
+
 }

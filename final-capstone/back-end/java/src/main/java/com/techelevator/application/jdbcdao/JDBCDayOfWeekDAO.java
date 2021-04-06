@@ -7,6 +7,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import com.techelevator.application.dao.DayOfWeekDAO;
 import com.techelevator.application.model.DayOfWeek;
+import com.techelevator.application.model.Destination;
 
 public class JDBCDayOfWeekDAO implements DayOfWeekDAO {
 
@@ -18,15 +19,31 @@ public class JDBCDayOfWeekDAO implements DayOfWeekDAO {
 	
 	
 	@Override
-	public DayOfWeek getDayById(long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public DayOfWeek getDayById(long dayId) {
+		DayOfWeek dayOfWeek = new DayOfWeek();
+		String sqlGetDayById = "SELECT * " +
+							   "FROM day_of_week " + 
+							   "WHERE day_id = ? ";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetDayById, dayId);
+		if (results.next()) {
+			dayOfWeek = mapRowToDayOfWeek(results);
+		}
+		return dayOfWeek;
 	}
 
 	@Override
 	public DayOfWeek getDayByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		DayOfWeek dayOfWeek = new DayOfWeek();
+		String sqlGetDayByName = "SELECT * " +
+								 "FROM day_of_week " + 
+							     "WHERE name = ? ";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetDayByName, name);
+		if (results.next()) {
+			dayOfWeek = mapRowToDayOfWeek(results);
+		}
+		return dayOfWeek;
 	}
 
 	private DayOfWeek mapRowToDayOfWeek(SqlRowSet results) {

@@ -1,5 +1,6 @@
 package com.techelevator.application.jdbcdao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -17,19 +18,22 @@ public class JDBCOpenHoursDAO implements OpenHoursDAO {
 	public JDBCOpenHoursDAO(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
-	
-	
-	@Override
-	public OpenHours setOpenHours(long destinationId, long dayId, String open, String close) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<OpenHours> readOpenHoursById(long destinationId) {
-		// TODO Auto-generated method stub
-		return null;
+		List<OpenHours> list = new ArrayList<>();
+		String sqlReadOpenHoursById = "SELECT * " +
+				 					  "FROM open_hours " +  
+									  "WHERE destination_id = ? ";
+									
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlReadOpenHoursById, destinationId);
+		while(results.next()) {
+			OpenHours openHours = mapRowToOpenHours(results);
+			list.add(openHours);
+		}
+		return list;
 	}
+
 
 	private OpenHours mapRowToOpenHours(SqlRowSet results) {
 		OpenHours openHours = new OpenHours();
