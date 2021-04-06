@@ -19,7 +19,7 @@ public class ApiController {
 /********************************************************************************************************************* 
 * Use this method if you'd like to log calls to your controllers - these message can aid in your troubleshooting
 * 
-* To use it: logRequest("a message you want to appear after the timestamp in the server log")
+* To use it: logRequest("a message you want to appear after the time stamp in the server log")
 * 
 * There are examples in the AuthenicationController.java program in the com.techelevator.security.controller package
 **********************************************************************************************************************/	
