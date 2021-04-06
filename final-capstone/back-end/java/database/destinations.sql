@@ -1,5 +1,3 @@
-
-
 insert into destinations (name, description, street_address, city, state, zipcode, latitude, longitude, website)
 values('West Side Market', 'Indoor/Outdoor Market in the Ohio City neighborhood', 'West 25th and Lorain', 'Cleveland', 'OH', '44113', 41.48432579146958, -81.70271675850701, 'http://westsidemarket.org/'),
       ('A Christmas Story House', 'A Christmas Story House, now restored to its movie splendor, is open year round to the public for tours. Story House Museum, which features original props, costumes and memorabilia from the film, as well as hundreds of rare behind-the-scenes photos.', '3159 W 11th St', 'Cleveland', 'OH', '44109', 41.468837868697214, 81.68679114470378, 'https://www.achristmasstoryhouse.com/'),

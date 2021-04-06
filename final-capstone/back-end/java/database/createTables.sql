@@ -1,4 +1,3 @@
---0Begin transaction;
 
 drop table if exists destination_landmark_types;
 drop table if exists open_hours;
@@ -36,8 +35,8 @@ create table open_hours
   hours_id       serial       NOT NULL,
   destination_id int          NOT NULL,
   day_id         int          NOT NULL,
-  open           time,       
-  close          time,
+  open           varchar(50),       
+  close          varchar(50),
   constraint pk_open_hours     primary key (hours_id),
   constraint fk_destination_id foreign key (destination_id) references destinations (destination_id),
   constraint fk_day_id          foreign key (day_id)         references day_of_week (day_id)
