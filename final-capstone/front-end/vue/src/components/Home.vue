@@ -8,8 +8,8 @@
             </div>
         <div> <!-- We need to figure out how to do a search box up here -->
             <form v-if="!isSubmitted" v-on:submit.prevent="filterDestinations">
-                <input v-model="searchTerm" placeholder="Search for a landmark"/>  <!-- two-way binds to searchTerm, attach to API request -->
-                 <button>Submit</button>    <!-- might need to add something here -->
+                <input v-model="searchTerm" placeholder="Search for a landmark by zip, name, or type"/>  <!-- two-way binds to searchTerm, attach to API request -->
+                 <button>Search</button>    <!-- might need to add something here -->
             </form>
             <div v-else>
                 <!-- Loop through destinations array and display names after search -->
@@ -22,6 +22,7 @@
                 </ul>
             </div>
             <router-link :to="{ name: 'register' }">Create an account</router-link>
+            <router-link>See all landmarks</router-link>
     </div>
         </div>
         </div>
@@ -59,12 +60,6 @@ export default {
 </script>
 
 <style>  /* CSS goes here */
-
-    body {
-        background-image: url("https://cleveland-bookkeeping.com/wp-content/uploads/2016/06/Moonrise-over-the-Cleveland-Ohio-skyline-and-Lake-Erie.jpg");
-        background-size: cover;
-        height: 100%;
-    }
 
 
     html {
