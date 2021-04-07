@@ -2,7 +2,7 @@ package com.techelevator.application.model;
 
 public class Destination {
 	
-	private long     destinationId;
+	private Long     destinationId;
 	private String   name;
 	private String   description;
 	private String   streetAddress;
@@ -12,12 +12,16 @@ public class Destination {
 	private double   latitude;
 	private double   longitude;
 	private String   website;
+	private String   open;
+	private String   close;
+	private String   dayOfWeek;
 	
-	public long getDestinationId() {
+	
+	public Long getDestinationId() {
 		return destinationId;
 	}
 	
-	public void setDestinationId(long destinationId) {
+	public void setDestinationId(Long destinationId) {
 		this.destinationId = destinationId;
 	}
 	
@@ -89,10 +93,34 @@ public class Destination {
 		return website;
 	}
 	
-	public void setWebiste(String website) {
+	public void setWebsite(String website) {
 		this.website = website;
 	}
 	
+	public String getOpen() {
+		return open;
+	}
+
+	public void setOpen(String open) {
+		this.open = open;
+	}
+
+	public String getClose() {
+		return close;
+	}
+
+	public void setClose(String close) {
+		this.close = close;
+	}
+
+	public String getDayOfWeek() {
+		return dayOfWeek;
+	}
+	
+	public void setDayOfWeek(String dayOfWeek) {
+		this.dayOfWeek = dayOfWeek;
+	}
+
 	@Override
 	public String toString() {
 		return "Destination [destinationId=" + destinationId + ", name=" + name + ", description=" + description

@@ -2,27 +2,28 @@ package com.techelevator.application.model;
 
 public class OpenHours {
 	
-	private long hoursId;
-	private long destinationId;
-	private long dayId;
+	private Long hoursId;
+	private Long destinationId;
+	private Long dayId;
 	private String open;
 	private String close;
-	public long getHoursId() {
+	
+	public Long getHoursId() {
 		return hoursId;
 	}
-	public void setHoursId(long hoursId) {
+	public void setHoursId(Long hoursId) {
 		this.hoursId = hoursId;
 	}
-	public long getDestinationId() {
+	public Long getDestinationId() {
 		return destinationId;
 	}
-	public void setDestinationId(long destinationId) {
+	public void setDestinationId(Long destinationId) {
 		this.destinationId = destinationId;
 	}
-	public long getDayId() {
+	public Long getDayId() {
 		return dayId;
 	}
-	public void setDayId(long dayId) {
+	public void setDayId(Long dayId) {
 		this.dayId = dayId;
 	}
 	public String getOpen() {

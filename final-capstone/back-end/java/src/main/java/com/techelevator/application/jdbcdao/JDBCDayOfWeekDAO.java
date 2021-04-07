@@ -4,11 +4,13 @@ import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import com.techelevator.application.dao.DayOfWeekDAO;
 import com.techelevator.application.model.DayOfWeek;
 import com.techelevator.application.model.Destination;
 
+@Component
 public class JDBCDayOfWeekDAO implements DayOfWeekDAO {
 
 	private JdbcTemplate jdbcTemplate;

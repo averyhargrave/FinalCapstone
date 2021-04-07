@@ -7,10 +7,12 @@ import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import com.techelevator.application.dao.DestinationDAO;
 import com.techelevator.application.model.Destination;
 
+@Component
 public class JDBCDestinationDAO implements DestinationDAO {
 
 	private JdbcTemplate jdbcTemplate;
@@ -81,9 +83,7 @@ public class JDBCDestinationDAO implements DestinationDAO {
 		destination.setZipcode(results.getString("zipcode"));
 		destination.setLatitude(results.getDouble("latitude"));
 		destination.setLongitude(results.getDouble("longitude"));
-		destination.setWebiste(results.getString("website"));
+		destination.setWebsite(results.getString("website"));
 		return destination;
 	}
-
-
 }

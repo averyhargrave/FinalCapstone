@@ -7,10 +7,12 @@ import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import com.techelevator.application.dao.OpenHoursDAO;
 import com.techelevator.application.model.OpenHours;
 
+@Component
 public class JDBCOpenHoursDAO implements OpenHoursDAO {
 
 	private JdbcTemplate jdbcTemplate;

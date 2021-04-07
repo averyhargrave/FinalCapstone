@@ -2,12 +2,13 @@ package com.techelevator.application.model;
 
 public class DayOfWeek {
 	
-	private long dayId;
+	private Long dayId;
 	private String name;
-	public long getDayId() {
+	
+	public Long getDayId() {
 		return dayId;
 	}
-	public void setDayId(long dayId) {
+	public void setDayId(Long dayId) {
 		this.dayId = dayId;
 	}
 	public String getName() {
