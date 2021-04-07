@@ -37,17 +37,17 @@ public class JDBCDestinationDAO implements DestinationDAO {
 	}
 
 	@Override
-	public Destination findDestinationByName(String name) {
-		Destination destination = new Destination();
+	public List<Destination> findDestinationByName(String name) {
+		List<Destination> list = new ArrayList<>();
 		String sqlGetDestinationByName = "SELECT * " +
 									     "FROM destinations " + 
 								         "WHERE name = ? ";
 		
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetDestinationByName, name);
-		if (results.next()) {
-			destination = mapRowToDestination(results);
+		while (results.next()) {
+			list.add(mapRowToDestination(results));
 		}
-		return destination;
+		return list;
 	}
 
 	@Override

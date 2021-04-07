@@ -90,4 +90,45 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+body {
+  justify-items: center;
+  align-content: center;
+}
+
+h1 {
+  grid-area: header;
+}
+
+label[for=username] {
+  grid-area: username; 
+}
+
+label[for=password] {
+  grid-area: password;
+}
+
+#username {
+  grid-area: username-box;
+}
+
+#password {
+  grid-area: password-box;
+}
+
+#confirmPassword {
+  grid-area: confirm-password-box;
+}
+
+#form-register {
+  grid-area: header;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  grid-template-areas:
+  "h1 . ."
+  "username . ."
+  "username-box . .";
+}
+</style>

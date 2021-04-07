@@ -127,6 +127,8 @@ public class Destination {
 				+ ", streetAddress=" + streetAddress + ", city=" + city + ", zipcode=" + zipcode + ", latitude="
 				+ latitude + ", longitude=" + longitude + ", website=" + website + "]";
 	}
+
+	
 	
 	
 

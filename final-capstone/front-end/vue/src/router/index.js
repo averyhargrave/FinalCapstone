@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
+import DestinationDetail from "../components/DestinationDetail.vue"
 
 Vue.use(Router)
 
@@ -26,7 +27,7 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
@@ -53,6 +54,19 @@ const router = new Router({
         requiresAuth: false
       }
     },
+    { // Do we need destinations path here?
+      path: "/destinations",
+      name: "D"
+    },
+    {
+      path: "/destinations/:id",
+      name: "DestinationDetail",
+      component: DestinationDetail
+    },
+    {
+      path: "/destinations/:zipcode",
+      name: "DestinationByZipcode"
+    }
   ]
 })
 
