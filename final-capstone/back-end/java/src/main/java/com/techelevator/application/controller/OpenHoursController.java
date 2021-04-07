@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +14,7 @@ import com.techelevator.application.dao.DayOfWeekDAO;
 import com.techelevator.application.dao.OpenHoursDAO;
 import com.techelevator.application.model.OpenHours;
 
+@CrossOrigin
 @RestController
 public class OpenHoursController {
 
