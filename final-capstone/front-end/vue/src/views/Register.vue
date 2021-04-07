@@ -5,7 +5,6 @@
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
-      <label for="username" class="sr-only">Username</label>
       <input
         type="text"
         id="username"
@@ -15,7 +14,6 @@
         required
         autofocus
       />
-      <label for="password" class="sr-only">Password</label>
       <input
         type="password"
         id="password"
@@ -94,6 +92,7 @@ export default {
 body {
   justify-items: center;
   align-content: center;
+  background-image: url("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F28%2F2017%2F11%2Fskyline-cleveland-ohio-VISITCLEVELAND0917.jpg&q=85");
 }
 
 h1 {
@@ -102,33 +101,43 @@ h1 {
 
 label[for=username] {
   grid-area: username; 
+  padding: 10px;
 }
 
 label[for=password] {
   grid-area: password;
+  padding: 10px;
 }
 
 #username {
   grid-area: username-box;
+  padding: 5px;
 }
 
 #password {
   grid-area: password-box;
+  padding: 5px;
 }
 
 #confirmPassword {
   grid-area: confirm-password-box;
+  padding: 5px;
 }
 
-#form-register {
-  grid-area: header;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+form.form-register {
+  display: flex;
+  flex-direction: column;
   justify-items: center;
   align-items: center;
-  grid-template-areas:
-  "h1 . ."
-  "username . ."
-  "username-box . .";
 }
+
+a {
+  padding: 10px;
+}
+
+button {
+  padding: 5px;
+}
+
+
 </style>
