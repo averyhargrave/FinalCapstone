@@ -9,7 +9,7 @@ public interface DestinationDAO {
 	// read
 	public List<Destination> findDestinationsByZip(String zipcode);
 
-	public Destination findDestinationByName(String name);
+	public List<Destination>findDestinationByName(String name);
 	
 	public Destination findDestinationById(long destinationId);
 
