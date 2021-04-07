@@ -19,6 +19,7 @@ export default {
         background-image: url("https://cleveland-bookkeeping.com/wp-content/uploads/2016/06/Moonrise-over-the-Cleveland-Ohio-skyline-and-Lake-Erie.jpg");
         background-size: cover;
         height: 100%;
+        background-repeat: no-repeat;
     }
 </style>
 

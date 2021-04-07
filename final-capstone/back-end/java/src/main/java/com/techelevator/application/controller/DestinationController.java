@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +18,7 @@ import com.techelevator.application.dao.DestinationDAO;
 import com.techelevator.application.model.Destination;
 
 @RestController
+@CrossOrigin
 public class DestinationController {
 
 	public DestinationController (DestinationDAO destinationDAO) {

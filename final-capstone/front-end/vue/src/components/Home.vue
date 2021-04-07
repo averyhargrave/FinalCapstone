@@ -9,6 +9,14 @@
         <div> <!-- We need to figure out how to do a search box up here -->
             <form v-if="!isSubmitted" v-on:submit.prevent="filterDestinations">
                 <input v-model="searchTerm" placeholder="Search for a landmark by zip, name, or type"/>  <!-- two-way binds to searchTerm, attach to API request -->
+                <label for="SearchBy">Search By :</label>
+
+        <select name="SearchBy" id="Search By" v-model="searchType">
+            <option value="zipcode">Zipcode</option>
+            <option value="venutype">Venu Type</option>
+            <option value="name">Name</option>
+            <option value="none">None</option>
+        </select>
                  <button>Search</button>    <!-- might need to add something here -->
             </form>
             <div v-else>
@@ -38,6 +46,7 @@ export default {
             destinations: [],
             errorMsg: '',
             searchTerm: '',
+            searchType: '',
             isSubmitted: false,
             isLoading: false
         }
@@ -49,11 +58,15 @@ export default {
         // Create method that takes the service method and sets response.data to this.destinations
         filterDestinations() {
             // Use services to get destinations that match the searchTerm
-            DestinationService.getDestinations().then(response => {
-                this.destinations = response.data
-                this.destinations.filter(destination => destination.name == this.searchTerm).filter(destination => destination.type == this.searchTerm) // Chain more filters here (OR statements in SQL)
-                this.isSubmitted = true;
-            })
+            if (this.searchType === 'none') {
+                DestinationService.getDestinations().then(response => {
+                    this.destinations = response.data
+                   // this.destinations.filter(destination => destination.name == this.searchTerm).filter(destination => destination.type == this.searchTerm) // Chain more filters here (OR statements in SQL)
+                    this.isSubmitted = true;
+                })
+            } else if (this.searchType === 'name') {
+                DestinationService.getADestinationByName()
+            }
         }
     }
 }
