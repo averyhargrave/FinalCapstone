@@ -8,16 +8,17 @@
             </div>
         <div> <!-- We need to figure out how to do a search box up here -->
             <form v-if="!isSubmitted" v-on:submit.prevent="filterDestinations">
-                <input v-model="searchTerm" placeholder="Search for a landmark by zip, name, or type"/>  <!-- two-way binds to searchTerm, attach to API request -->
+                <input v-model="searchTerm" placeholder="Search for a landmark"/>  <!-- two-way binds to searchTerm, attach to API request -->
                 <label for="SearchBy">Search By :</label>
 
         <select name="SearchBy" id="Search By" v-model="searchType">
             <option value="zipcode">Zipcode</option>
             <option value="venutype">Venu Type</option>
             <option value="name">Name</option>
-            <option value="none">None</option>
+            <option value="listAll">List All</option>
         </select>
                  <button>Search</button>    <!-- might need to add something here -->
+                 <router-link :to="{ name: 'register' }">Create an account</router-link>
             </form>
             <div v-else>
                 <!-- Loop through destinations array and display names after search -->
@@ -28,8 +29,8 @@
                         </router-link>
                     </li>
                 </ul>
+                <button v-on:click="cancelSearch">Cancel</button>
             </div>
-            <router-link :to="{ name: 'register' }">Create an account</router-link>
             <!--<router-link>See all landmarks</router-link> -->
     </div>
         </div>
@@ -57,16 +58,30 @@ export default {
     methods: {
         // Create method that takes the service method and sets response.data to this.destinations
         filterDestinations() {
+            console.log(`searchType: ${this.searchType}`)
             // Use services to get destinations that match the searchTerm
-            if (this.searchType === 'none') {
+            if (this.searchType === 'listAll') {
                 DestinationService.getDestinations().then(response => {
                     this.destinations = response.data
                    // this.destinations.filter(destination => destination.name == this.searchTerm).filter(destination => destination.type == this.searchTerm) // Chain more filters here (OR statements in SQL)
                     this.isSubmitted = true;
                 })
             } else if (this.searchType === 'name') {
-                DestinationService.getADestinationByName()
+                DestinationService.getDestinationByName(this.searchTerm).then(response => {
+                    this.destinations = response.data
+                    this.isSubmitted = true;
+                })
+            } else if (this.searchType === 'zipcode') {
+                DestinationService.getDestinationByZip(this.searchTerm).then(response => {
+                    this.destinations = response.data
+                    this.isSubmitted = true;
+                })
             }
+        },
+        cancelSearch() {
+            this.searchTerm = '';
+            this.searchType = '';
+            this.isSubmitted = false;
         }
     }
 }

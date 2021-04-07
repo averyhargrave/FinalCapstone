@@ -20,5 +20,14 @@ export default {
 
     getDestinations() {
         return axios.get('/destinations');
+    },
+
+    getDestinationByName(name) {
+        console.log(`getDestinationByName: ${name}`)
+        return axios.get(`/destinations?name=${name}`)
+    },
+
+    getDestinationByZip(zip) {
+        return axios.get(`/destinations?zipcode=${zip}`)
     }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div :style="image" class="background-image">
     <h1></h1>
     <home />
   </div>
@@ -10,13 +10,17 @@ import Home from "@/components/Home.vue"
 export default {
   components: {
     Home
+  },
+  data() {
+    return {
+      image: { backgroundImage: "url(https://cleveland-bookkeeping.com/wp-content/uploads/2016/06/Moonrise-over-the-Cleveland-Ohio-skyline-and-Lake-Erie.jpg)"}
+    }
   }
 };
 </script>
 
-<style scoped>
+<style>
  body {
-        background-image: url("https://cleveland-bookkeeping.com/wp-content/uploads/2016/06/Moonrise-over-the-Cleveland-Ohio-skyline-and-Lake-Erie.jpg");
         background-size: cover;
         height: 100%;
         background-repeat: no-repeat;

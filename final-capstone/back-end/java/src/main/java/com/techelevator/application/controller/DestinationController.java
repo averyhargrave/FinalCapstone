@@ -30,23 +30,26 @@ public class DestinationController {
 	@RequestMapping(path = "/destinations", method = RequestMethod.GET)
 	public List<Destination> findDestinations (@RequestParam(defaultValue="") String name, @RequestParam(defaultValue="") String zipcode, @RequestParam(defaultValue="") String type, @RequestParam(defaultValue="0") String id) {
 		List<Destination> result = new ArrayList<>();
-		if(zipcode.equals("") && name.equals("") && type.equals("") && (Long.parseLong(id) != 0)) {
+		if(zipcode.equals("") && name.equals("") && type.equals("") && id.equals("0")) {
 			result = destinationDAO.getAllDestinations();
 		}
 		if(!zipcode.equals("")) {
+			logAPICall("Called with the path: /destinations?zipcode=" + zipcode);
 			result = destinationDAO.findDestinationsByZip(zipcode);
 		}
 		if(!name.equals("")) {
+			logAPICall("Called with the path: /destinations?name=" + name);
 			result = destinationDAO.findDestinationByName(name);
 		}
 		if(!type.equals("")) {
+			logAPICall("Called with the path: /destinations?type=" + type);
 			result = destinationDAO.findDestinationsByType(type);
 		}
 		if(Long.parseLong(id) != 0) {
 			result = destinationDAO.findDestinationById(Long.parseLong(id));
 		}
 		
-		logAPICall("Called with the path: /destinations");
+		logAPICall("Number of destinations found: " + result.size());
 		return result;
 	}
 	

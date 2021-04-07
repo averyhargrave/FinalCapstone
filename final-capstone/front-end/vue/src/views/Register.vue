@@ -1,5 +1,5 @@
 <template>
-  <div id="register" class="text-center">
+  <div :style="image" id="register" class="text-center background-image" >
     <form class="form-register" @submit.prevent="register">
       <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
@@ -53,6 +53,7 @@ export default {
       },
       registrationErrors: false,
       registrationErrorMsg: 'There were problems registering this user.',
+      image: { backgroundImage: "url(https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F28%2F2017%2F11%2Fskyline-cleveland-ohio-VISITCLEVELAND0917.jpg&q=85)"}
     };
   },
   methods: {
@@ -92,35 +93,25 @@ export default {
 body {
   justify-items: center;
   align-content: center;
-  background-image: url("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F28%2F2017%2F11%2Fskyline-cleveland-ohio-VISITCLEVELAND0917.jpg&q=85");
-}
-
-h1 {
-  grid-area: header;
 }
 
 label[for=username] {
-  grid-area: username; 
   padding: 10px;
 }
 
 label[for=password] {
-  grid-area: password;
   padding: 10px;
 }
 
 #username {
-  grid-area: username-box;
   padding: 5px;
 }
 
 #password {
-  grid-area: password-box;
   padding: 5px;
 }
 
 #confirmPassword {
-  grid-area: confirm-password-box;
   padding: 5px;
 }
 
