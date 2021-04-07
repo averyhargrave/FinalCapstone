@@ -1,12 +1,7 @@
 
-drop table if exists destination_landmark_types;
 drop table if exists open_hours;
-drop table if exists destinations;
+drop table if exists destinations CASCADE;
 drop table if exists day_of_week;
-drop table if exists landmark_types;
-
-
-
 
 create table destinations
 (
@@ -20,6 +15,7 @@ create table destinations
   latitude       decimal(16,14) NOT NULL,
   longitude      decimal(16,14) NOT NULL,
   website        varchar(100) NOT NULL,
+  type           varchar(25)  NOT NULL,
   constraint pk_destinations primary key (destination_id)
 );
 
@@ -41,27 +37,3 @@ create table open_hours
   constraint fk_destination_id foreign key (destination_id) references destinations (destination_id),
   constraint fk_day_id          foreign key (day_id)         references day_of_week (day_id)
 );
-
-create table landmark_types
-(
-  type_id       serial        NOT NULL,
-  type          varchar(20)   NOT NULL,
-  constraint pk_landmark_types primary key (type_id)
-);
-
-create table destination_landmark_types
-(
-  destination_type_id serial  NOT NULL,
-  destination_id      int     NOT NULL,
-  type_id             int     NOT NULL,
-  constraint fk_destination_id foreign key (destination_id) references destinations (destination_id),
-  constraint fk_type_id        foreign key (type_id)        references landmark_types (type_id)
-);
-
-  
-
-
-
-  
-  
-  
