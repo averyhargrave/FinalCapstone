@@ -11,8 +11,11 @@ public interface DestinationDAO {
 
 	public List<Destination>findDestinationByName(String name);
 	
-	public Destination findDestinationById(long destinationId);
+	public List<Destination> findDestinationById(long destinationId);
 
+	public List<Destination> findDestinationsByType(String type);
+	
+	public List<Destination> getAllDestinations();
 	// delete
 	public void deleteDestination(long destinationId);
 }

@@ -3,16 +3,20 @@ package com.techelevator.application.controller;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.techelevator.application.dao.DestinationDAO;
 
 import com.techelevator.application.model.Destination;
 
+@RestController
 public class DestinationController {
 
 	public DestinationController (DestinationDAO destinationDAO) {
@@ -21,30 +25,34 @@ public class DestinationController {
 	private DestinationDAO destinationDAO;
 
 	
-	@RequestMapping(path = "/destination/{name}", method = RequestMethod.GET)
-	public List<Destination> findDestinationByName (@PathVariable String name) {
-		List<Destination> destination = destinationDAO.findDestinationByName(name);
-		logAPICall("Called with the path: /destination/" + name);
-		return destination;
+	@RequestMapping(path = "/destinations", method = RequestMethod.GET)
+	public List<Destination> findDestinations (@RequestParam(defaultValue="") String name, @RequestParam(defaultValue="") String zipcode, @RequestParam(defaultValue="") String type) {
+		List<Destination> result = new ArrayList<>();
+		System.out.println("name = " + name + ", zipcode = " + zipcode + ", type = " + type);
+		if(zipcode.equals("") && name.equals("") && type.equals("")) {
+			result = destinationDAO.getAllDestinations();
+		}
+		if(!zipcode.equals("")) {
+			result = destinationDAO.findDestinationsByZip(zipcode);
+		}
+		if(!name.equals("")) {
+			result = destinationDAO.findDestinationByName(name);
+		}
+		if(!type.equals("")) {
+			result = destinationDAO.findDestinationsByType(type);
+		}
+		
+		logAPICall("Called with the path: /destinations");
+		return result;
 	}
-	
-	
-	@RequestMapping(path = "/destination/{zipcode}", method = RequestMethod.GET)
-	public List<Destination> findDestinationsByZip (@PathVariable String zipcode) {
-		List<Destination> result = destinationDAO.findDestinationByName(zipcode);
-		logAPICall("Called with the path: /destination/" + zipcode);
+	@RequestMapping(path = "/destinationId/{destinationId}", method = RequestMethod.GET)
+	public List<Destination> findDestinationById (@PathVariable long destinationId) {
+		List<Destination> result = destinationDAO.findDestinationById(destinationId);
+		logAPICall("Called with the path: /destinations/" + destinationId);
 		return result;
 	}
 	
-	@RequestMapping(path = "/destination/{destinationId}", method = RequestMethod.GET)
-	public Destination findDestinationById (@PathVariable long destinationId) {
-		Destination findByID = destinationDAO.findDestinationById(destinationId);
-		logAPICall("Called with the path: /destination/" + destinationId);
-		return findByID;
-	}
-	
-	
-	@RequestMapping(value = "/destination/{destinationId}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete/{destinationId}", method = RequestMethod.DELETE)
     public void deleteDestination(@PathVariable long destinationId) {
 		destinationDAO.deleteDestination(destinationId);
  

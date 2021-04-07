@@ -20,6 +20,20 @@ public class JDBCDestinationDAO implements DestinationDAO {
 	public JDBCDestinationDAO(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
+	
+	public List<Destination> getAllDestinations() {
+		List<Destination> list = new ArrayList<>();
+		String sqlGetAllDestinations = "SELECT * " +
+									   "FROM destinations ";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllDestinations);
+		while(results.next()) {
+			Destination destination = mapRowToDestination(results);
+			list.add(destination);
+		}
+		return list;
+	}
+	
 
 	@Override
 	public List<Destination> findDestinationsByZip(String zipcode) {
@@ -51,18 +65,33 @@ public class JDBCDestinationDAO implements DestinationDAO {
 	}
 
 	@Override
-	public Destination findDestinationById(long destinationId) {
-		Destination destination = new Destination();
+	public List<Destination> findDestinationById(long destinationId) {
+		List<Destination> list = new ArrayList<>();
 		String sqlGetDestinationById = "SELECT * " +
 									   "FROM destinations " + 
 								       "WHERE destination_id = ? ";
 		
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetDestinationById, destinationId);
-		if (results.next()) {
-			destination = mapRowToDestination(results);
+		while (results.next()) {
+			list.add(mapRowToDestination(results));
 		}
-		return destination;
+		return list;
 	}
+	
+	@Override
+	public List<Destination> findDestinationsByType(String type) {
+		List<Destination> list = new ArrayList<>();
+		String sqlGetDestinationByType = "SELECT * " +
+									   "FROM destinations " + 
+								       "WHERE type = ? ";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetDestinationByType, type);
+		while (results.next()) {
+			list.add(mapRowToDestination(results));
+		}
+		return list;
+	}
+	
 
 	@Override
 	public void deleteDestination(long destinationId) {
@@ -84,6 +113,9 @@ public class JDBCDestinationDAO implements DestinationDAO {
 		destination.setLatitude(results.getDouble("latitude"));
 		destination.setLongitude(results.getDouble("longitude"));
 		destination.setWebsite(results.getString("website"));
+		destination.setType(results.getString("type"));
 		return destination;
 	}
+
+	
 }

@@ -12,9 +12,7 @@ public class Destination {
 	private double   latitude;
 	private double   longitude;
 	private String   website;
-	private String   open;
-	private String   close;
-	private String   dayOfWeek;
+	private String   type;
 	
 	
 	public Long getDestinationId() {
@@ -97,35 +95,19 @@ public class Destination {
 		this.website = website;
 	}
 	
-	public String getOpen() {
-		return open;
+	public String getType() {
+		return type;
 	}
 
-	public void setOpen(String open) {
-		this.open = open;
-	}
-
-	public String getClose() {
-		return close;
-	}
-
-	public void setClose(String close) {
-		this.close = close;
-	}
-
-	public String getDayOfWeek() {
-		return dayOfWeek;
-	}
-	
-	public void setDayOfWeek(String dayOfWeek) {
-		this.dayOfWeek = dayOfWeek;
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	@Override
 	public String toString() {
 		return "Destination [destinationId=" + destinationId + ", name=" + name + ", description=" + description
 				+ ", streetAddress=" + streetAddress + ", city=" + city + ", zipcode=" + zipcode + ", latitude="
-				+ latitude + ", longitude=" + longitude + ", website=" + website + "]";
+				+ latitude + ", longitude=" + longitude + ", website=" + website + ", type=" + type + "]";
 	}
 
 	
