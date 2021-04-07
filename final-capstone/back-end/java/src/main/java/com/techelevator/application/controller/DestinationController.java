@@ -28,10 +28,9 @@ public class DestinationController {
 
 	
 	@RequestMapping(path = "/destinations", method = RequestMethod.GET)
-	public List<Destination> findDestinations (@RequestParam(defaultValue="") String name, @RequestParam(defaultValue="") String zipcode, @RequestParam(defaultValue="") String type) {
+	public List<Destination> findDestinations (@RequestParam(defaultValue="") String name, @RequestParam(defaultValue="") String zipcode, @RequestParam(defaultValue="") String type, @RequestParam(defaultValue="0") String id) {
 		List<Destination> result = new ArrayList<>();
-		System.out.println("name = " + name + ", zipcode = " + zipcode + ", type = " + type);
-		if(zipcode.equals("") && name.equals("") && type.equals("")) {
+		if(zipcode.equals("") && name.equals("") && type.equals("") && (Long.parseLong(id) != 0)) {
 			result = destinationDAO.getAllDestinations();
 		}
 		if(!zipcode.equals("")) {
@@ -43,14 +42,11 @@ public class DestinationController {
 		if(!type.equals("")) {
 			result = destinationDAO.findDestinationsByType(type);
 		}
+		if(Long.parseLong(id) != 0) {
+			result = destinationDAO.findDestinationById(Long.parseLong(id));
+		}
 		
 		logAPICall("Called with the path: /destinations");
-		return result;
-	}
-	@RequestMapping(path = "/destinationId/{destinationId}", method = RequestMethod.GET)
-	public List<Destination> findDestinationById (@PathVariable long destinationId) {
-		List<Destination> result = destinationDAO.findDestinationById(destinationId);
-		logAPICall("Called with the path: /destinations/" + destinationId);
 		return result;
 	}
 	

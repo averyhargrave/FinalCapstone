@@ -22,8 +22,8 @@
             <div v-else>
                 <!-- Loop through destinations array and display names after search -->
                 <ul>
-                    <li v-for="destination in destinations" v-bind:key="destination.destination_id">
-                        <router-link :to="{ name: 'DestinationDetail', params: { id: destination.destination_id}}">
+                    <li v-for="destination in destinations" v-bind:key="destination.destinationId">
+                        <router-link :to="{ name: 'DestinationDetail', params: { id: destination.destinationId}}">
                             {{ destination.name }}
                         </router-link>
                     </li>
