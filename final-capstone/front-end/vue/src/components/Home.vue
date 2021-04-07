@@ -30,7 +30,7 @@
                 </ul>
             </div>
             <router-link :to="{ name: 'register' }">Create an account</router-link>
-            <router-link>See all landmarks</router-link>
+            <!--<router-link>See all landmarks</router-link> -->
     </div>
         </div>
         </div>
