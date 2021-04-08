@@ -24,8 +24,9 @@ public class JDBCOpenHoursDAO implements OpenHoursDAO {
 	@Override
 	public List<OpenHours> readOpenHoursById(long destinationId) {
 		List<OpenHours> list = new ArrayList<>();
-		String sqlReadOpenHoursById = "SELECT * " +
-				 					  "FROM open_hours " +  
+		String sqlReadOpenHoursById = "SELECT open_hours.*, day_of_week.name " +
+				 					  "FROM open_hours " + 
+				 					  "INNER JOIN day_of_week on day_of_week.day_id = open_hours.day_id " +
 									  "WHERE destination_id = ? ";
 									
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlReadOpenHoursById, destinationId);
@@ -44,6 +45,7 @@ public class JDBCOpenHoursDAO implements OpenHoursDAO {
 		openHours.setDestinationId(results.getLong("destination_id"));
 		openHours.setOpen(results.getString("open"));
 		openHours.setClose(results.getString("close"));
+		openHours.setDayOfWeek(results.getString("name"));
 		return openHours;
 	}
 }

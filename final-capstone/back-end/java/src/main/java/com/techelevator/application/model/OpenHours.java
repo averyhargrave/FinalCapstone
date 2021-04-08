@@ -8,6 +8,8 @@ public class OpenHours {
 	private String open;
 	private String close;
 	
+	private String dayOfWeek;
+	
 	public Long getHoursId() {
 		return hoursId;
 	}
@@ -42,6 +44,12 @@ public class OpenHours {
 	public String toString() {
 		return "OpenHours [hoursId=" + hoursId + ", destinationId=" + destinationId + ", dayId=" + dayId + ", open="
 				+ open + ", close=" + close + "]";
+	}
+	public String getDayOfWeek() {
+		return dayOfWeek;
+	}
+	public void setDayOfWeek(String dayOfWeek) {
+		this.dayOfWeek = dayOfWeek;
 	}
 	
 	

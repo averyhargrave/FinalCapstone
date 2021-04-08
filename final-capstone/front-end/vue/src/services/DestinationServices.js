@@ -29,5 +29,13 @@ export default {
 
     getDestinationByZip(zip) {
         return axios.get(`/destinations?zipcode=${zip}`)
+    },
+
+    getDestinationHours(id) {
+        return axios.get(`/hours/${id}`)
+    },
+
+    getByDay(name) {
+        return axios.get(`/dayOfWeek/${name}`)
     }
 }
