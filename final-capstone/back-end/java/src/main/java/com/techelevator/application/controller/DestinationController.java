@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techelevator.application.dao.DestinationDAO;
-
+import com.techelevator.application.model.DayOfWeek;
 import com.techelevator.application.model.Destination;
 
 @RestController
@@ -28,9 +28,9 @@ public class DestinationController {
 
 	
 	@RequestMapping(path = "/destinations", method = RequestMethod.GET)
-	public List<Destination> findDestinations (@RequestParam(defaultValue="") String name, @RequestParam(defaultValue="") String zipcode, @RequestParam(defaultValue="") String type, @RequestParam(defaultValue="0") String id) {
+	public List<Destination> findDestinations (@RequestParam(defaultValue="") String name, @RequestParam(defaultValue="") String zipcode, @RequestParam(defaultValue="") String type) {
 		List<Destination> result = new ArrayList<>();
-		if(zipcode.equals("") && name.equals("") && type.equals("") && id.equals("0")) {
+		if(zipcode.equals("") && name.equals("") && type.equals("")) {
 			result = destinationDAO.getAllDestinations();
 		}
 		if(!zipcode.equals("")) {
@@ -45,12 +45,16 @@ public class DestinationController {
 			logAPICall("Called with the path: /destinations?type=" + type);
 			result = destinationDAO.findDestinationsByType(type);
 		}
-		if(Long.parseLong(id) != 0) {
-			result = destinationDAO.findDestinationById(Long.parseLong(id));
-		}
 		
 		logAPICall("Number of destinations found: " + result.size());
 		return result;
+	}
+	
+	@RequestMapping(path = "/destinations/{id}", method = RequestMethod.GET)
+	public List<Destination> getDestinationById (@PathVariable Long id) {
+		List<Destination> destination = destinationDAO.findDestinationById(id);
+		logAPICall("Called with the path: /destinations/" + id);
+		return destination;
 	}
 	
 	@RequestMapping(value = "/delete/{destinationId}", method = RequestMethod.DELETE)
