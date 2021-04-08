@@ -8,7 +8,8 @@ import com.techelevator.application.model.Itinerary;
 public interface ItineraryDAO {
 	
 	// create 
-	public Itinerary createItinerary (long userId, Date date, String startingPoint);
+	
+	public void createItinerary (long userId, String startingPoint, Date date);
 	
 	// read
 	
@@ -17,10 +18,11 @@ public interface ItineraryDAO {
 
 	// update 
 	
-	public Itinerary updateItinerary (long itineraryId, Date date, String startingPoint);
+	public void updateItinerary (String startingPoint, Date date, long itineraryId);
 	
 	
 	// delete 
+	
 	public void deleteItinerary (long itineraryId);
 	
 	
