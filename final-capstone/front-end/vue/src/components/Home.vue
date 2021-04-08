@@ -94,8 +94,9 @@ export default {
         height: 100vmax;
     }
     
+    
     div.home {
-         display: flex;
+        display: flex;
         flex-direction: column;
         justify-items: center;
         align-items: center;

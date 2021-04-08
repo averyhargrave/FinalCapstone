@@ -20,9 +20,9 @@ export default {
 </script>
 
 <style>
- body {
+ div.background-image {
         background-size: cover;
-        height: 100%;
+        height: 100vmax;
         background-repeat: no-repeat;
     }
 </style>
