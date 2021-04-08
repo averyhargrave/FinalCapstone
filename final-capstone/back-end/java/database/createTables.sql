@@ -16,6 +16,7 @@ create table destinations
   longitude      decimal(16,14) NOT NULL,
   website        varchar(100) NOT NULL,
   type           varchar(25)  NOT NULL,
+  image          varchar(500) NOT NULL,
   constraint pk_destinations primary key (destination_id)
 );
 

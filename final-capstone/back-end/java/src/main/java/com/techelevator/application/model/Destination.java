@@ -13,6 +13,7 @@ public class Destination {
 	private double   longitude;
 	private String   website;
 	private String   type;
+	private String 	 image;
 	
 	
 	public Long getDestinationId() {
@@ -101,6 +102,15 @@ public class Destination {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+	
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	@Override

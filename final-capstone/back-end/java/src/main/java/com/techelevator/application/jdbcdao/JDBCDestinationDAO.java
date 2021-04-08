@@ -114,6 +114,7 @@ public class JDBCDestinationDAO implements DestinationDAO {
 		destination.setLongitude(results.getDouble("longitude"));
 		destination.setWebsite(results.getString("website"));
 		destination.setType(results.getString("type"));
+		destination.setImage(results.getString("image"));
 		return destination;
 	}
 
