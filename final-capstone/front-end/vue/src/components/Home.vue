@@ -1,5 +1,5 @@
 <template> <!-- HTML goes here -->
-    <div>
+    <div id="main">
         <h1>Explore Cleveland</h1>
         <div class="destinations">
             <div class="status-message error" v-show="errorMsg != ''">{{errorMsg}}</div>
@@ -90,8 +90,8 @@ export default {
 <style>  /* CSS goes here */
 
 
-    html {
-        height: 100%;
+    #main {
+        height: 100vmax;
     }
     
     div.home {

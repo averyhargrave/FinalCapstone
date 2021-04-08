@@ -90,6 +90,11 @@ export default {
 </script>
 
 <style>
+#register {
+  height: 100vmax;
+  background-repeat: no-repeat;
+}
+
 body {
   justify-items: center;
   align-content: center;
