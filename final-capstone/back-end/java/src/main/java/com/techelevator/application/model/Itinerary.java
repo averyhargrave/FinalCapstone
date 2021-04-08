@@ -8,7 +8,8 @@ public class Itinerary {
 	private long itineraryId;
 	private long userId;
 	private String startingPoint;
-	private Date date;
+	private String date;
+	
 	public long getItineraryId() {
 		return itineraryId;
 	}
@@ -28,10 +29,10 @@ public class Itinerary {
 	public void setStartingPoint(String startingPoint) {
 		this.startingPoint = startingPoint;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	@Override

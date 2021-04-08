@@ -9,16 +9,19 @@ public interface ItineraryDAO {
 	
 	// create 
 	
-	public void createItinerary (long userId, String startingPoint, Date date);
+	public void createItinerary (long userId, Itinerary itinerary);
 	
 	// read
 	
+	public List<Itinerary> viewAllItineraries (long itineraryId, long userId, String startingPoint, String date);
+	
 	public List<Itinerary> viewItineraryByUser (long userId);
-	public List<Itinerary> viewItineraryByDate (Date date);
+	
+	public List<Itinerary> viewItineraryByDate (String date);
 
 	// update 
 	
-	public void updateItinerary (String startingPoint, Date date, long itineraryId);
+	public void updateItinerary (String startingPoint, String date, long itineraryId);
 	
 	
 	// delete 
