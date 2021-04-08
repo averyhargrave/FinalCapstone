@@ -13,7 +13,7 @@ public interface ItineraryDAO {
 	
 	// read
 	
-	public List<Itinerary> viewAllItineraries (long itineraryId, long userId, String startingPoint, String date);
+	public List<Itinerary> viewAllItineraries ();
 	
 	public List<Itinerary> viewItineraryByUser (long userId);
 	

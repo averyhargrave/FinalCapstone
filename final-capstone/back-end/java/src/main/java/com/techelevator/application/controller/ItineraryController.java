@@ -39,8 +39,8 @@ public void createItinerary(Principal userInfo, @RequestBody Itinerary itinerary
 }
 
 @RequestMapping(path = "/itinerary/", method = RequestMethod.GET)
-public List<Itinerary> viewAllItineraries (@PathVariable long itineraryId, long userId, String startingPoint, String date) {
-	List<Itinerary> itineraryUser = itineraryDAO.viewAllItineraries(itineraryId, userId, startingPoint, date);
+public List<Itinerary> viewAllItineraries () {
+	List<Itinerary> itineraryUser = itineraryDAO.viewAllItineraries();
 	logAPICall("Called with the path: /itinerary/");
 	return itineraryUser;
 }
