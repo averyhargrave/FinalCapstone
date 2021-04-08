@@ -96,6 +96,14 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 		return itinerary;
 	}
 
+	@Override
+	public void addToItinerary(long destinationId, long itineraryId) {
+		String sqlAddToItinerary = "INSERT INTO itinerary(destinationId, itineraryId) " +
+								   "VALUES(?, ?) ";
+		jdbcTemplate.update(sqlAddToItinerary, destinationId, itineraryId);
+		
+	}
+
 
 
 

@@ -9,6 +9,8 @@ public interface ItineraryDAO {
 	
 	// create 
 	
+	public void addToItinerary (long destinationId, long itineraryId);
+	
 	public void createItinerary (long userId, Itinerary itinerary);
 	
 	// read

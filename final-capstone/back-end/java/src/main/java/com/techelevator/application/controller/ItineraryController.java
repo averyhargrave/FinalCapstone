@@ -31,6 +31,14 @@ public ItineraryController (ItineraryDAO itineraryDAO, UserDAO userDAO) {
 private UserDAO userDAO;
 private ItineraryDAO itineraryDAO;
 
+
+@RequestMapping(path = "/add/itinerary/{destinationId}/{itineraryId}", method = RequestMethod.POST)
+public void addToItinerary(@PathVariable long destinationId, long itineraryId) {
+	itineraryDAO.addToItinerary(destinationId, itineraryId);
+	logAPICall("Called with the path: /add/itinerary/");
+	
+}
+
 @RequestMapping(path = "/create/itinerary/", method = RequestMethod.POST)
 public void createItinerary(Principal userInfo, @RequestBody Itinerary itinerary) {
 	long userId = userDAO.findIdByUsername(userInfo.getName());
