@@ -32,14 +32,14 @@ private UserDAO userDAO;
 private ItineraryDAO itineraryDAO;
 
 
-@RequestMapping(path = "/add/itinerary/{destinationId}/{itineraryId}", method = RequestMethod.POST)
+@RequestMapping(path = "/addItinerary/{destinationId}/{itineraryId}", method = RequestMethod.POST)
 public void addToItinerary(@PathVariable long destinationId, long itineraryId) {
 	itineraryDAO.addToItinerary(destinationId, itineraryId);
 	logAPICall("Called with the path: /add/itinerary/");
 	
 }
 
-@RequestMapping(path = "/create/itinerary/", method = RequestMethod.POST)
+@RequestMapping(path = "/createItinerary/", method = RequestMethod.POST)
 public void createItinerary(Principal userInfo, @RequestBody Itinerary itinerary) {
 	long userId = userDAO.findIdByUsername(userInfo.getName());
 	itineraryDAO.createItinerary(userId, itinerary);
@@ -54,7 +54,7 @@ public List<Itinerary> viewAllItineraries () {
 }
 
 
-@RequestMapping(path = "/itinerary/{userId}", method = RequestMethod.GET)
+@RequestMapping(path = "/itineraryUser/{userId}", method = RequestMethod.GET)
 public List<Itinerary> viewItineraryByUser (@PathVariable Long userId) {
 	List<Itinerary> itineraryUser = itineraryDAO.viewItineraryByUser(userId);
 	logAPICall("Called with the path: /itinerary/" + userId);
@@ -62,7 +62,7 @@ public List<Itinerary> viewItineraryByUser (@PathVariable Long userId) {
 }
 
 
-@RequestMapping(path = "/itinerary/date/{date}", method = RequestMethod.GET)
+@RequestMapping(path = "/itineraryDate/{date}", method = RequestMethod.GET)
 public List<Itinerary> viewItineraryByDate (@PathVariable String date) {
 	
 	List<Itinerary> itineraryUser = itineraryDAO.viewItineraryByDate(date);
@@ -70,7 +70,7 @@ public List<Itinerary> viewItineraryByDate (@PathVariable String date) {
 	return itineraryUser;
 }
 
-@RequestMapping(value = "/delete/itinerary/{itineraryId}", method = RequestMethod.DELETE)
+@RequestMapping(value = "/deleteItinerary/{itineraryId}", method = RequestMethod.DELETE)
 public void deleteItinerary(@PathVariable long itineraryId) {
 	itineraryDAO.deleteItinerary(itineraryId);
 
