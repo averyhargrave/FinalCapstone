@@ -24,6 +24,7 @@ export default {
         background-size: cover;
         height: 100vmax;
         background-repeat: no-repeat;
+        margin: -100px;
     }
 </style>
 

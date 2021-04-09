@@ -9,9 +9,10 @@
         <div> <!-- We need to figure out how to do a search box up here -->
             <form v-if="!isSubmitted" v-on:submit.prevent="filterDestinations">
                 <input v-model="searchTerm" placeholder="Search for a landmark"/>  <!-- two-way binds to searchTerm, attach to API request -->
-                <label for="SearchBy">Search By :</label>
+                <label for="SearchBy"></label>
 
         <select name="SearchBy" id="Search By" v-model="searchType">
+            <option value="" >Search By</option>
             <option value="zipcode">Zipcode</option>
             <option value="venutype">Venu Type</option>
             <option value="name">Name</option>
@@ -94,6 +95,9 @@ export default {
         height: 100vmax;
     }
     
+    label {
+        color: white;
+    }
     
     div.home {
         display: flex;
@@ -107,6 +111,8 @@ export default {
         color: white;
         font-family: "Lucida Handwriting", cursive;
         font-size: 80px;
+        display: flex;
+        justify-content: center;
     }
 
     div.destinations {
@@ -136,6 +142,5 @@ export default {
     button:hover {
         color: blue;
     }
-
 
 </style>

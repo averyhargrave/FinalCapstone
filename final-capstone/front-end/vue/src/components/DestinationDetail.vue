@@ -2,7 +2,7 @@
     <div class="DestinationDetail" v-if="!isLoading">
         <h1>{{destination.name}}</h1>
         <h2>{{destination.description}}</h2>
-        <div v-for="anHour in destination.hours" :key="anHour.hourId">
+        <div class="Hours" v-for="anHour in destination.hours" :key="anHour.hourId">
             <h3>{{anHour.dayOfWeek}}: 
                 {{anHour.open}} -
                 {{anHour.close}}  
@@ -12,7 +12,7 @@
         </div>
         <a :href="destination.website">{{destination.website}}</a>
 
-        <img :src="destination.image" alt="Landmark Image">
+        <img :src="destination.image" alt="Landmark Image" class="center">
     </div>
 </template>
 
@@ -49,12 +49,44 @@ export default {
 
 <style scoped>
 h1 {
-color: black;
+    display: flex;
+    color: black;
+    justify-content: center;
+
 }
 
-a {
+h2 {
+    display: flex;
     color: black;
+    justify-content: center;
+    margin: 20px;
+    padding: 20px;
+}
+
+.Hours {
+    display: flex;
+    color: black;
+    justify-content: center; 
+    margin: -30px;
     
+    
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+
+
+}
+
+
+a {
+    display: flex;
+    color: black;
+    justify-content: center;
+    margin: 30px;
 }
  
  a:hover {
