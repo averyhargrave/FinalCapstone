@@ -5,23 +5,29 @@ import java.util.Date;
 
 public class Itinerary {
 	
-	private long itineraryId;
-	private long userId;
+	private Long itineraryId;
+	private Long userId;
 	private String startingPoint;
 	private String date;
 	
-	public long getItineraryId() {
+	
+
+	public Long getItineraryId() {
 		return itineraryId;
 	}
-	public void setItineraryId(long itineraryId) {
+
+	public void setItineraryId(Long itineraryId) {
 		this.itineraryId = itineraryId;
 	}
-	public long getUserId() {
+
+	public Long getUserId() {
 		return userId;
 	}
-	public void setUserId(long userId) {
+
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
+
 	public String getStartingPoint() {
 		return startingPoint;
 	}

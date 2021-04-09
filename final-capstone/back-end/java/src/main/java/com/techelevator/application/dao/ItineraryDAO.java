@@ -9,28 +9,28 @@ public interface ItineraryDAO {
 	
 	// create 
 	
-	public void addToItinerary (long destinationId, long itineraryId);
+	public void addToItinerary (Long destinationId, Long itineraryId);
 	
-	public void createItinerary (long userId, Itinerary itinerary);
+	public void createItinerary (Long userId, Itinerary itinerary);
 	
 	// read
 	
 	public List<Itinerary> viewAllItineraries ();
 	
-	public Itinerary viewItineraryById(long itineraryId);
+	public Itinerary viewItineraryById(Long itineraryId);
 	
-	public List<Itinerary> viewItineraryByUser (long userId);
+	public List<Itinerary> viewItineraryByUser (Long userId);
 	
 	public List<Itinerary> viewItineraryByDate (String date);
 
 	// update 
 	
-	public void updateItinerary (String startingPoint, String date, long itineraryId);
+	public void updateItinerary (String startingPoint, String date, Long itineraryId);
 	
 	
 	// delete 
 	
-	public void deleteItinerary (long itineraryId);
+	public void deleteItinerary (Long itineraryId);
 	
 	
 

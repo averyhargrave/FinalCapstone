@@ -20,8 +20,4 @@ deleteItinerary(itineraryId) {
 addToItinerary(destinationId, itineraryId) {
     return axios.post(`/addItinerary/${destinationId}/${itineraryId}`)
 },
-
-viewItineraryByUser(userId) {
-    return axios.get(`/itineraryUser/${userId}`)
-}
 }

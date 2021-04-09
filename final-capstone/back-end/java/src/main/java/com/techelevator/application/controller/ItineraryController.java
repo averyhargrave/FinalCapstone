@@ -32,7 +32,7 @@ private UserDAO userDAO;
 private ItineraryDAO itineraryDAO;
 
 @RequestMapping(path = "/viewItineraryById/{id}", method = RequestMethod.GET)
-public Itinerary viewItinerary(@PathVariable long id) {
+public Itinerary viewItinerary(@PathVariable Long id) {
 	Itinerary itinerary = itineraryDAO.viewItineraryById(id);
 	logAPICall("Called with the path: /viewItineraryById/" + id);
 	return itinerary;
@@ -40,7 +40,7 @@ public Itinerary viewItinerary(@PathVariable long id) {
 
 
 @RequestMapping(path = "/addItinerary/{destinationId}/{itineraryId}", method = RequestMethod.POST)
-public void addToItinerary(@PathVariable long destinationId, long itineraryId) {
+public void addToItinerary(@PathVariable Long destinationId, Long itineraryId) {
 	itineraryDAO.addToItinerary(destinationId, itineraryId);
 	logAPICall("Called with the path: /add/itinerary/");
 	
@@ -78,7 +78,7 @@ public List<Itinerary> viewItineraryByDate (@PathVariable String date) {
 }
 
 @RequestMapping(value = "/deleteItinerary/{itineraryId}", method = RequestMethod.DELETE)
-public void deleteItinerary(@PathVariable long itineraryId) {
+public void deleteItinerary(@PathVariable Long itineraryId) {
 	itineraryDAO.deleteItinerary(itineraryId);
 
 }

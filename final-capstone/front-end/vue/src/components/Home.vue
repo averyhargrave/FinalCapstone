@@ -25,9 +25,9 @@
                 <!-- Loop through destinations array and display names after search -->
                 <ul>
                     <span style="background-color:white;"></span>
-                    <submit></submit>
+                    
                     <li v-for="destination in destinations" v-bind:key="destination.destinationId">
-                        <input type="checkbox"/>
+                        <input type="checkbox" v-on:change="addToItinerary($event, destination.destinationId)"/>
                         <router-link :to="{ name: 'DestinationDetail', params: { id: destination.destinationId}}" class="destinationDetail">
                             {{ destination.name }}
                         </router-link>
@@ -45,7 +45,7 @@
 
 <script> // Vue goes here
 import DestinationService from '../services/DestinationServices';
-
+import ItineraryServices from '../services/ItineraryServices';
 export default {
     data() {
         return {
@@ -54,11 +54,15 @@ export default {
             searchTerm: '',
             searchType: '',
             isSubmitted: false,
-            isLoading: false
+            isLoading: false,
+            itinerary: [],
+            userItineraries: []
         }
     },
     created() {
-
+        ItineraryServices.getItineraryById(this.$store.state.user.id).then(response => {
+            this.userItineraries = response.data
+        })
     },
     methods: {
         // Create method that takes the service method and sets response.data to this.destinations
@@ -87,7 +91,20 @@ export default {
             this.searchTerm = '';
             this.searchType = '';
             this.isSubmitted = false;
+        },
+
+        addToItinerary(event, destinationId) {
+            
+            if (event.target.checked) {
+                
+                this.itinerary.push(destinationId);
+            } else {
+                this.itinerary = this.itinerary.filter(destination =>{
+                    return destination !== destinationId
+                })
+            }
         }
+
     }
 }
 </script>

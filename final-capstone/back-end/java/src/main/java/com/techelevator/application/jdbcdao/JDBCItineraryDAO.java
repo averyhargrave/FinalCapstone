@@ -23,14 +23,14 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 	}
 	
 	@Override
-	public void createItinerary(long userId, Itinerary itinerary) {
+	public void createItinerary(Long userId, Itinerary itinerary) {
 		String sqlCreateItinerary = "INSERT INTO itinerary(user_id, date, starting_point) " +
 									"VALUES(?, ?, ?) ";
 		jdbcTemplate.update(sqlCreateItinerary, userId, itinerary.getDate(),itinerary.getStartingPoint());
 	}
 
 	@Override
-	public List<Itinerary> viewItineraryByUser(long userId) {
+	public List<Itinerary> viewItineraryByUser(Long userId) {
 		List<Itinerary> list = new ArrayList<>();
 		String sqlFindItineraryByUser = "SELECT * " +
 									  "FROM itinerary " + 
@@ -58,7 +58,7 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 	}
 
 	@Override
-	public void updateItinerary(String startingPoint, String date, long itineraryId) {
+	public void updateItinerary(String startingPoint, String date, Long itineraryId) {
 		String sqlUpdateItinerary = "UPDATE itinerary " +
 									"SET starting_point = ?, " +
 									"    date = ? " +
@@ -81,7 +81,7 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 	}
 	
 	@Override
-	public Itinerary viewItineraryById(long itineraryId) {
+	public Itinerary viewItineraryById(Long itineraryId) {
 		Itinerary itinerary = new Itinerary();
 		String sqlViewItineraryById = "SELECT * " +
 									  "FROM itinerary " + 
@@ -95,7 +95,7 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 	}
 	
 	@Override
-	public void deleteItinerary(long itineraryId) {
+	public void deleteItinerary(Long itineraryId) {
 		String deleteDestination = "DELETE " +
 								   "FROM itinerary " +
 								   "WHERE itinerary_id = ? ";
@@ -103,7 +103,7 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 	}
 
 	private Itinerary mapRowToItinerary(SqlRowSet results) {
-		Itinerary itinerary = new Itinerary();
+		Itinerary itinerary = new Itinerary(); 
 		itinerary.setItineraryId(results.getLong("itinerary_id"));
 		itinerary.setUserId(results.getLong("user_id"));
 		itinerary.setStartingPoint(results.getString("starting_point"));
@@ -111,8 +111,8 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 	}
 
 	@Override
-	public void addToItinerary(long destinationId, long itineraryId) {
-		String sqlAddToItinerary = "INSERT INTO itinerary(destination_id, itinerary_id) " +
+	public void addToItinerary(Long destinationId, Long itineraryId) {
+		String sqlAddToItinerary = "INSERT INTO itinerary_destination (destination_id, itinerary_id) " +
 								   "VALUES(?, ?) ";
 		jdbcTemplate.update(sqlAddToItinerary, destinationId, itineraryId);
 		
