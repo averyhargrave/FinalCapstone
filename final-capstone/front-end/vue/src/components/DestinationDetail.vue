@@ -1,6 +1,13 @@
 <template>
     <div class="DestinationDetail" v-if="!isLoading">
         <h1>{{destination.name}}</h1>
+        <!-- drop-down up here that lists through user itineraries -->
+        <button>Add to Itinerary</button>
+        <select name="SelectItinerary" id="Select Itinerary" v-for="itinerary in itineraries" v-bind:key="itinerary.itineraryId">
+            <option value="">Select Itinerary</option>
+
+        </select>
+        <!-- pushes you to itineraryDetail -->
         <h2>{{destination.description}}</h2>
         <div class="Hours" v-for="anHour in destination.hours" :key="anHour.hourId">
             <h3>{{anHour.dayOfWeek}}: 
@@ -18,6 +25,7 @@
 
 <script>
 import DestinationServices from '../services/DestinationServices'
+import ItineraryServices from '../services/ItineraryServices'
 
 export default {
     created() {
@@ -29,6 +37,10 @@ export default {
              this.destination.hours = res.data
              this.isLoading = false;
              console.log(this.destination)
+        
+        ItineraryServices.getItineraryById(this.$store.state.user.id).then(response => {
+            this.itineraries = response.data;
+        })
 
          })   
 
@@ -38,7 +50,8 @@ export default {
     data() {
         return {
             destination: {},
-            isLoading: true
+            isLoading: true,
+            itineraries: []
         }
 
         
@@ -53,6 +66,18 @@ h1 {
     color: black;
     justify-content: center;
 
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+select {
+    display: flex;
+    justify-content: center;
+    margin: auto;
 }
 
 h2 {

@@ -19,7 +19,8 @@
             <option value="listAll">List All</option>
         </select>
                  <button>Search</button>    <!-- might need to add something here -->
-                 <router-link :to="{ name: 'register' }">Create an account</router-link>
+                 <router-link :to="{ name: 'register' }" v-if="!this.$store.state.token">Create an account</router-link>
+                 <button v-if="this.$store.state.token">Create Itinerary</button>
             </form>
             <div v-else>
                 <!-- Loop through destinations array and display names after search -->
