@@ -20,15 +20,18 @@
         </select>
                  <button>Search</button>    <!-- might need to add something here -->
                  <router-link :to="{ name: 'register' }" v-if="!this.$store.state.token">Create an account</router-link>
-                 <button v-if="this.$store.state.token">Create Itinerary</button>
             </form>
             <div v-else>
                 <!-- Loop through destinations array and display names after search -->
                 <ul>
+                    <span style="background-color:white;"></span>
+                    <submit></submit>
                     <li v-for="destination in destinations" v-bind:key="destination.destinationId">
-                        <router-link :to="{ name: 'DestinationDetail', params: { id: destination.destinationId}}">
+                        <input type="checkbox"/>
+                        <router-link :to="{ name: 'DestinationDetail', params: { id: destination.destinationId}}" class="destinationDetail">
                             {{ destination.name }}
                         </router-link>
+                        <!-- Button to create or add to itinerary -->
                     </li>
                 </ul>
                 <button v-on:click="cancelSearch">Cancel</button>
@@ -125,7 +128,14 @@ export default {
         display: flex;
         justify-content: center;
         font-weight: bold;
-        color: white;
+        color: black;
+    }
+
+    a.destinationDetail {
+        color: #034f84;
+        background-color: #fefbd8;
+        margin-top: 5px;
+        border-radius: 10px;
     }
 
     a:hover {
@@ -142,6 +152,18 @@ export default {
 
     button:hover {
         color: blue;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    li {
+         color: white;
+    }
+
+   .select.active > span {
+        background-color: white;
     }
 
 </style>

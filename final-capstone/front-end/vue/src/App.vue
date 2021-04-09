@@ -7,3 +7,10 @@
     <router-view />
   </div>
 </template>
+
+<style>
+  router-link {
+    color: black;
+  }
+    
+</style>

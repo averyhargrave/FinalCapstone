@@ -64,6 +64,11 @@ const router = new Router({
       component: DestinationDetail
     },
     {
+      path: "/itineraryUser/",
+      name: "ItineraryDetail",
+      //component: ItineraryDetail
+    },
+    {
       path: "/destinations/:zipcode",
       name: "DestinationByZipcode"
     }
