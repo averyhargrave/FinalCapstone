@@ -17,6 +17,8 @@ public interface ItineraryDAO {
 	
 	public List<Itinerary> viewAllItineraries ();
 	
+	public Itinerary viewItineraryById(long itineraryId);
+	
 	public List<Itinerary> viewItineraryByUser (long userId);
 	
 	public List<Itinerary> viewItineraryByDate (String date);

@@ -31,6 +31,13 @@ public ItineraryController (ItineraryDAO itineraryDAO, UserDAO userDAO) {
 private UserDAO userDAO;
 private ItineraryDAO itineraryDAO;
 
+@RequestMapping(path = "/viewItineraryById/{id}", method = RequestMethod.GET)
+public Itinerary viewItinerary(@PathVariable long id) {
+	Itinerary itinerary = itineraryDAO.viewItineraryById(id);
+	logAPICall("Called with the path: /viewItineraryById/" + id);
+	return itinerary;
+}
+
 
 @RequestMapping(path = "/addItinerary/{destinationId}/{itineraryId}", method = RequestMethod.POST)
 public void addToItinerary(@PathVariable long destinationId, long itineraryId) {
@@ -57,7 +64,7 @@ public List<Itinerary> viewAllItineraries () {
 @RequestMapping(path = "/itineraryUser/{userId}", method = RequestMethod.GET)
 public List<Itinerary> viewItineraryByUser (@PathVariable Long userId) {
 	List<Itinerary> itineraryUser = itineraryDAO.viewItineraryByUser(userId);
-	logAPICall("Called with the path: /itinerary/" + userId);
+	logAPICall("Called with the path: /itineraryUser/" + userId);
 	return itineraryUser;
 }
 
@@ -65,9 +72,9 @@ public List<Itinerary> viewItineraryByUser (@PathVariable Long userId) {
 @RequestMapping(path = "/itineraryDate/{date}", method = RequestMethod.GET)
 public List<Itinerary> viewItineraryByDate (@PathVariable String date) {
 	
-	List<Itinerary> itineraryUser = itineraryDAO.viewItineraryByDate(date);
-	logAPICall("Called with the path: /itinerary/" + date);
-	return itineraryUser;
+	List<Itinerary> itineraryDate = itineraryDAO.viewItineraryByDate(date);
+	logAPICall("Called with the path: /itineraryDate/" + date);
+	return itineraryDate;
 }
 
 @RequestMapping(value = "/deleteItinerary/{itineraryId}", method = RequestMethod.DELETE)

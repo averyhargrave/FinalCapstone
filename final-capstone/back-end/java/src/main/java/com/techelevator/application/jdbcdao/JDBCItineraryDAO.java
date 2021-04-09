@@ -81,6 +81,20 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 	}
 	
 	@Override
+	public Itinerary viewItineraryById(long itineraryId) {
+		Itinerary itinerary = new Itinerary();
+		String sqlViewItineraryById = "SELECT * " +
+									  "FROM itinerary " + 
+								      "WHERE itinerary_id = ? ";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlViewItineraryById, itineraryId);
+		if (results.next()) {
+			itinerary = mapRowToItinerary(results);
+		}
+		return itinerary;
+	}
+	
+	@Override
 	public void deleteItinerary(long itineraryId) {
 		String deleteDestination = "DELETE " +
 								   "FROM itinerary " +
