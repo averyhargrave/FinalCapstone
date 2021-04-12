@@ -39,9 +39,9 @@ public class JDBCDestinationDAO implements DestinationDAO {
 		List<Destination> list = new ArrayList<>();
 		String sqlViewDestinationsByItineraryId = "SELECT *.destinations " +
 												  "FROM destinations " +
-												  "JOIN itinerary_destination ON destination.id = itinerary_destination.id " +
-												  "JOIN itinerary ON itinerary.id = itinerary_destination.id " +
-												  "WHERE itinerary.id = ? ";
+												  "JOIN itinerary_destination ON destination.destination_id = itinerary_destination.destination_id " +
+												  "JOIN itinerary ON itinerary.itinerary_id = itinerary_destination.itinerary_id " +
+												  "WHERE itinerary.itinerary_id = ? ";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlViewDestinationsByItineraryId, id);
 		while(results.next()) {
 			Destination destination = mapRowToDestination(results);
