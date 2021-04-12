@@ -14,7 +14,7 @@
         <select name="SearchBy" id="Search By" v-model="searchType">
             <option value="" >Search By</option>
             <option value="zipcode">Zipcode</option>
-            <option value="venutype">Venu Type</option>
+            <option value="venuetype">Venue Type</option>
             <option value="name">Name</option>
             <option value="listAll">List All</option>
         </select>
@@ -93,6 +93,11 @@ export default {
                     this.destinations = response.data
                     this.isSubmitted = true;
                 })
+            } else if (this.searchType === 'venuetype') {
+                 DestinationService.getDestinationByVenueType(this.searchTerm).then(response => {
+                    this.destinations = response.data
+                    this.isSubmitted = true;
+                })
             }
         },
         cancelSearch() {
@@ -114,16 +119,11 @@ export default {
         },
 
         postToItinerary() {
-          this.itinerary.forEach((element) => {
-          ItineraryServices.addToItinerary(element, this.selectedItinerary) 
-              
-          });
-              this.$router.push({name:"ItineraryDetail"})   
-
-
+            this.itinerary.forEach((element) => {
+            ItineraryServices.addToItinerary(element, this.selectedItinerary)
+        });
+            this.$router.push({name:"ItineraryDetail", params:{id:this.selectedItinerary}});
         }
-
-
     }
 }
 </script>

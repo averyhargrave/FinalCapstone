@@ -31,6 +31,10 @@ export default {
         return axios.get(`/destinations?zipcode=${zip}`)
     },
 
+    getDestinationByVenueType(venuetype) {
+        return axios.get(`/destinations?type=${venuetype}`)
+    },
+    
     getDestinationHours(id) {
         return axios.get(`/hours/${id}`)
     },

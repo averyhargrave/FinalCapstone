@@ -9,8 +9,12 @@ submitItinerary() { // finalize itinerary and generate route
 
 },
 
-getItineraryById(userId) {
+getItineraryByUserId(userId) {
     return axios.get(`/itineraryUser/${userId}`);
+},
+
+getItineraryByItineraryId(itineraryId) {
+    return axios.get(`/viewItineraryById/${itineraryId}`);
 },
 
 deleteItinerary(itineraryId) {
@@ -20,4 +24,8 @@ deleteItinerary(itineraryId) {
 addToItinerary(destinationId, itineraryId) {
     return axios.post(`/addItinerary/${destinationId}/${itineraryId}`)
 },
+
+viewDestinationsByItineraryId(itineraryId) {
+    return axios.get(`/viewDestinationsByItineraryId/${itineraryId}`)
+}
 }

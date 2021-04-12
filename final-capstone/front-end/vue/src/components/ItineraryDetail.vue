@@ -1,15 +1,13 @@
 <template>
     <div class="ItineraryDetail">
-        <h1>Itinerary {{itinerary.itineraryId}}</h1>
+        <h1>Itinerary of {{itinerary.date}}</h1>
         <button>Edit</button>
         <button>Delete</button>
 
         <!-- Loop through destinations array and display names after search -->
-        <ul>
-            <span style="background-color:white;"></span>
-                    
-            <li v-for="destination in itinerary" v-bind:key="destination.destinationId">
-                <router-link :to="{ name: 'ItineraryDetail', params: { id: destination.destinationId}}" class="itineraryDetail">
+        <ul>        
+            <li v-for="destination in destinations" v-bind:key="destination.destinationId">
+                <router-link :to="{ name: 'DestinationDetail', params: { id: destination.destinationId}}" class="destinationDetail">
                     {{ destination.name }}
                 </router-link>
             </li>
@@ -19,18 +17,22 @@
 
 <script>
 import Home from '../components/Home.vue'
+import ItineraryServices from '../services/ItineraryServices.js'
 
 export default {
     name: 'Home',
-    props: ['itinerary'],
-    components : {
-        Home
-    },
     created() {
-        
+        ItineraryServices.getItineraryByItineraryId(this.$route.params.id).then(response => {
+            this.itinerary = response.data;
+        });
+        ItineraryServices.viewDestinationsByItineraryId(this.$route.params.id).then(response => {
+            this.destinations = response.data;
+        });
     },
     data() {
         return {
+            itinerary: [],
+            destinations: []
         }
     }
 }

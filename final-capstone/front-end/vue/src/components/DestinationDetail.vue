@@ -33,18 +33,15 @@ export default {
             this.destination = response.data[0]
             console.log(this.destination)
 
-         DestinationServices.getDestinationHours(this.$route.params.id).then(res => {
-             this.destination.hours = res.data
-             this.isLoading = false;
-             console.log(this.destination)
+            DestinationServices.getDestinationHours(this.$route.params.id).then(res => {
+                this.destination.hours = res.data
+                this.isLoading = false;
+                console.log(this.destination)
         
-        ItineraryServices.getItineraryById(this.$store.state.user.id).then(response => {
-            this.itineraries = response.data;
-        })
-
-         })   
-
-
+                ItineraryServices.getItineraryById(this.$store.state.user.id).then(response => {
+                    this.itineraries = response.data;
+                })
+            })   
         });
     },
     data() {

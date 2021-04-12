@@ -109,6 +109,7 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 		itinerary.setItineraryId(results.getLong("itinerary_id"));
 		itinerary.setUserId(results.getLong("user_id"));
 		itinerary.setStartingPoint(results.getString("starting_point"));
+		itinerary.setDate(results.getString("date"));
 		return itinerary;
 	}
 
