@@ -6,6 +6,7 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import DestinationDetail from "../components/DestinationDetail.vue"
+import ItineraryDetail from "../components/ItineraryDetail.vue"
 
 Vue.use(Router)
 
@@ -66,7 +67,7 @@ const router = new Router({
     {
       path: "/itineraryUser/",
       name: "ItineraryDetail",
-      //component: ItineraryDetail
+      component: ItineraryDetail
     },
     {
       path: "/destinations/:zipcode",
