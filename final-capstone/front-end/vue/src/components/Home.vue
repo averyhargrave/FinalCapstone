@@ -22,6 +22,11 @@
                  <router-link :to="{ name: 'register' }" v-if="!this.$store.state.token">Create an account</router-link>
             </form>
             <div v-else>
+            <button v-on:click="postToItinerary"> Add to Itinerary </button> 
+            <select name="oneOption" id="itineraryList" v-model="selectedItinerary">
+            <option v-for="itinerary in userItineraries" :key="itinerary.itineraryId" :value="itinerary.itineraryId">{{itinerary.startingPoint}}</option>
+            </select>
+                
                 <!-- Loop through destinations array and display names after search -->
                 <ul>
                     <span style="background-color:white;"></span>
@@ -46,6 +51,7 @@
 <script> // Vue goes here
 import DestinationService from '../services/DestinationServices';
 import ItineraryServices from '../services/ItineraryServices';
+
 export default {
     data() {
         return {
@@ -56,7 +62,9 @@ export default {
             isSubmitted: false,
             isLoading: false,
             itinerary: [],
-            userItineraries: []
+            userItineraries: [],
+            selectedItinerary: null
+
         }
     },
     created() {
@@ -103,7 +111,18 @@ export default {
                     return destination !== destinationId
                 })
             }
+        },
+
+        postToItinerary() {
+          this.itinerary.forEach((element) => {
+          ItineraryServices.addToItinerary(element, this.selectedItinerary) 
+              
+          });
+              this.$router.push({name:"ItineraryDetail"})   
+
+
         }
+
 
     }
 }

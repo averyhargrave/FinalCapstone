@@ -40,7 +40,7 @@ public Itinerary viewItinerary(@PathVariable Long id) {
 
 
 @RequestMapping(path = "/addItinerary/{destinationId}/{itineraryId}", method = RequestMethod.POST)
-public void addToItinerary(@PathVariable Long destinationId, Long itineraryId) {
+public void addToItinerary(@PathVariable Long destinationId,@PathVariable Long itineraryId) {
 	itineraryDAO.addToItinerary(destinationId, itineraryId);
 	logAPICall("Called with the path: /add/itinerary/");
 	
