@@ -37,6 +37,9 @@ export default {
     },
     data() {
         return {
+            mapsAPI1: "https://maps.googleapis.com/maps/api/directions/json?origin",
+            mapsAPI2: "&destination=",
+            mapsAPI3: "&key=AIzaSyCBm7oNFS6gCTFUEoylMOW5oAT1cgYYkcw", 
             itinerary: [],
             destinations: [],
             itineraryCreated: false
@@ -44,7 +47,10 @@ export default {
     },
     methods: {
         deleteItinerary() {
-            this.$router.push('/');
+
+            ItineraryServices.deleteItinerary(this.itinerary.itineraryId).then(response => {
+                this.$router.push('/')
+            })
         },
         editItinerary() {
             ItineraryServices.editItinerary(this.itinerary.startingPoint, this.itinerary.date, this.itinerary.itineraryId)
