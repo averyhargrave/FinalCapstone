@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.techelevator.application.dao.DestinationDAO;
 import com.techelevator.application.dao.ItineraryDAO;
-
+import com.techelevator.application.model.Destination;
 import com.techelevator.application.model.Itinerary;
 import com.techelevator.security.dao.UserDAO;
 
@@ -22,12 +23,13 @@ import com.techelevator.security.dao.UserDAO;
 @CrossOrigin
 public class ItineraryController {
 
-public ItineraryController (ItineraryDAO itineraryDAO, UserDAO userDAO) {
+public ItineraryController (ItineraryDAO itineraryDAO, UserDAO userDAO, DestinationDAO destinationDAO) {
 	this.itineraryDAO = itineraryDAO;
 	this.userDAO =userDAO;
-	
+	this.destinationDAO = destinationDAO;
 }
 
+private DestinationDAO destinationDAO;
 private UserDAO userDAO;
 private ItineraryDAO itineraryDAO;
 
@@ -38,6 +40,13 @@ public Itinerary viewItinerary(@PathVariable Long id) {
 	return itinerary;
 }
 
+@RequestMapping(path = "/viewDestinationsByItineraryId/{id}", method = RequestMethod.GET)
+public List<Destination> viewDestinationsByItineraryId(@PathVariable Long id) {
+	List<Destination> destinations = new ArrayList<>();
+	destinations = destinationDAO.viewDestinationsByItineraryId(id);
+	logAPICall("Called with the path: /viewDestinationsByItineraryId/" + id);
+	return destinations;
+}
 
 @RequestMapping(path = "/addItinerary/{destinationId}/{itineraryId}", method = RequestMethod.POST)
 public void addToItinerary(@PathVariable Long destinationId,@PathVariable Long itineraryId) {

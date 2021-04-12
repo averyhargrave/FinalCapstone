@@ -16,6 +16,9 @@ public interface DestinationDAO {
 	public List<Destination> findDestinationsByType(String type);
 	
 	public List<Destination> getAllDestinations();
+	
+	public List<Destination> viewDestinationsByItineraryId(Long id);
+
 	// delete
 	public void deleteDestination(long destinationId);
 }

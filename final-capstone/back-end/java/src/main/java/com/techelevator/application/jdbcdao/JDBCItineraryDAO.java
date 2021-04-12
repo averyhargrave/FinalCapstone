@@ -94,6 +94,8 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 		return itinerary;
 	}
 	
+	
+	
 	@Override
 	public void deleteItinerary(Long itineraryId) {
 		String deleteDestination = "DELETE " +
