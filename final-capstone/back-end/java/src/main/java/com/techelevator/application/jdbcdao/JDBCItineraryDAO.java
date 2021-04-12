@@ -23,10 +23,10 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 	}
 	
 	@Override
-	public void createItinerary(Long userId, Itinerary itinerary) {
+	public void createItinerary(Long userId, String date, String startingPoint) {
 		String sqlCreateItinerary = "INSERT INTO itinerary(user_id, date, starting_point) " +
 									"VALUES(?, ?, ?) ";
-		jdbcTemplate.update(sqlCreateItinerary, userId, itinerary.getDate(),itinerary.getStartingPoint());
+		jdbcTemplate.update(sqlCreateItinerary, userId, date, startingPoint);
 	}
 
 	@Override

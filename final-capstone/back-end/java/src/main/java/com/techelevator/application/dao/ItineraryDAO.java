@@ -12,7 +12,7 @@ public interface ItineraryDAO {
 	
 	public void addToItinerary (Long destinationId, Long itineraryId);
 	
-	public void createItinerary (Long userId, Itinerary itinerary);
+	public void createItinerary (Long userId, String date, String startingPoint);
 	
 	// read
 	

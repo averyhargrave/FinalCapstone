@@ -1,13 +1,23 @@
 import axios from 'axios';
 export default {
 
-createItinerary() {
-    return axios.post(`/createItinerary`); // send their starting point, date, landmarks, route
+createItinerary(startingPoint, date) {
+    return axios.post(`/createItinerary`, {
+        startingPoint: startingPoint,
+        date: date
+    }); 
 },
 
-submitItinerary() { // finalize itinerary and generate route
-
+editItinerary(startingPoint, date, id) {
+    return axios.put(`/updateItinerary/${id}`, {
+        startingPoint: startingPoint,
+        date: date
+    })
 },
+
+//submitItinerary() { // finalize itinerary and generate route
+
+//},
 
 getItineraryByUserId(userId) {
     return axios.get(`/itineraryUser/${userId}`);

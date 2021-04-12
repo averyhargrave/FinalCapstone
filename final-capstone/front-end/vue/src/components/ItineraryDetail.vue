@@ -1,8 +1,15 @@
 <template>
     <div class="ItineraryDetail">
         <h1>Itinerary of {{itinerary.date}}</h1>
-        <button>Edit</button>
-        <button>Delete</button>
+        <button v-on:click="itineraryCreated = !itineraryCreated">Edit</button>
+        <form v-if="itineraryCreated" v-on:submit.prevent="editItinerary">
+            <label for="startingPoint">Starting point:</label><br>
+            <input type="text" id="startingPoint" name="startingPoint" v-model="itinerary.startingPoint"><br>
+            <label for="date">Date:</label><br>
+            <input type="text" id="date" name="date" v-model="itinerary.date"><br>
+            <button  type="submit">Edit Itinerary</button>
+        </form>
+        <button v-on:click="deleteItinerary">Delete</button>
 
         <!-- Loop through destinations array and display names after search -->
         <ul>        
@@ -16,7 +23,6 @@
 </template>
 
 <script>
-import Home from '../components/Home.vue'
 import ItineraryServices from '../services/ItineraryServices.js'
 
 export default {
@@ -32,12 +38,24 @@ export default {
     data() {
         return {
             itinerary: [],
-            destinations: []
+            destinations: [],
+            itineraryCreated: false
+        }
+    },
+    methods: {
+        deleteItinerary() {
+            this.$router.push('/');
+        },
+        editItinerary() {
+            ItineraryServices.editItinerary(this.itinerary.startingPoint, this.itinerary.date, this.itinerary.itineraryId)
         }
     }
 }
 </script>
 
 <style scoped>
+#app {
+    background-color: black;
+}
 
 </style>

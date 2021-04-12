@@ -19,7 +19,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
  div.background-image {
         background-size: cover;
         height: 100vmax;

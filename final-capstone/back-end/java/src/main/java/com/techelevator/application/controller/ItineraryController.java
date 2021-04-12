@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techelevator.application.dao.DestinationDAO;
@@ -55,10 +56,10 @@ public void addToItinerary(@PathVariable Long destinationId,@PathVariable Long i
 	
 }
 
-@RequestMapping(path = "/createItinerary/", method = RequestMethod.POST)
+@RequestMapping(path = "/createItinerary", method = RequestMethod.POST)
 public void createItinerary(Principal userInfo, @RequestBody Itinerary itinerary) {
 	long userId = userDAO.findIdByUsername(userInfo.getName());
-	itineraryDAO.createItinerary(userId, itinerary);
+	itineraryDAO.createItinerary(userId, itinerary.getDate(), itinerary.getStartingPoint());
 
 }
 
@@ -90,6 +91,11 @@ public List<Itinerary> viewItineraryByDate (@PathVariable String date) {
 public void deleteItinerary(@PathVariable Long itineraryId) {
 	itineraryDAO.deleteItinerary(itineraryId);
 
+}
+
+@RequestMapping(value = "/updateItinerary/{itineraryId}", method = RequestMethod.PUT)
+public void updateItinerary(@PathVariable Long itineraryId, @RequestBody Itinerary itinerary) {
+	itineraryDAO.updateItinerary(itinerary.getStartingPoint(), itinerary.getDate(), itineraryId);
 }
 
 
