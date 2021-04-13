@@ -3,7 +3,8 @@
         <h1>{{destination.name}}</h1>
         <!-- drop-down up here that lists through user itineraries -->
         <button>Add to Itinerary</button>
-    
+
+
         <select name="SelectItinerary" id="Select Itinerary" v-for="itinerary in itineraries" v-bind:key="itinerary.itineraryId">
             <option value="">Select Itinerary</option>
 
@@ -28,8 +29,10 @@
 import DestinationServices from '../services/DestinationServices'
 import ItineraryServices from '../services/ItineraryServices'
 
+
 export default {
     created() {
+        
         DestinationServices.getADestination(this.$route.params.id).then(response => {
             this.destination = response.data[0]
             console.log(this.destination)
@@ -49,19 +52,20 @@ export default {
         return {
             destination: {},
             isLoading: true,
-            itineraries: []
+            itineraries: [],
+            thumbsUp: ''
         }
 
         
     },
 
-
-}
+  } 
 
 
 </script>
 
 <style scoped>
+
 h1 {
     display: flex;
     color: black;
