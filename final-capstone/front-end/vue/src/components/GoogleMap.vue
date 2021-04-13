@@ -1,15 +1,14 @@
 <template>
   <div>
     <div>
-      <h2>Search and add a pin</h2>
-      <GmapAutocomplete
-        @place_changed='setPlace'
-      />
-      <button
-        @click='addMarker'
-      >
-        Add
-      </button>
+       <select v-if="destinations.length > 0" name="oneOption" id="itineraryList" v-model="start">
+            <option value="">Starting Location</option>
+            <option v-for="destination in destinations" :key="destination.destinationId" :value="destination.name">{{destination.name}}</option>
+            </select>
+       <select v-if="destinations.length > 0" name="oneOption" id="itineraryList" v-model="end">
+            <option value="">Destination</option>
+            <option v-for="destination in destinations" :key="destination.destinationId" :value="destination.name">{{destination.name}}</option>
+            </select>     
     </div>
     <br>
     <GmapMap
@@ -17,6 +16,7 @@
       :zoom='12'
       style='width:100%;  height: 400px;'
     >
+     <DirectionsRenderer travelMode="DRIVING" :origin="origin" :destination="destionation"/>
       <GmapMarker
         :key="index"
         v-for="(m, index) in markers"
@@ -28,19 +28,43 @@
 </template>
 
 <script>
+import DirectionsRenderer from "../components/Directions.js"
 export default {
   name: 'GoogleMap',
+  components: {
+    DirectionsRenderer
+  },
+  props: ["destinations"],
   data() {
     return {
-      center: { lat: 45.508, lng: -73.587 },
+      center: { lat: 41.499, lng: -81.694 },
       currentPlace: null,
       markers: [],
       places: [],
+      waypoints: [],
+      start:'',
+      end: '',
+
+
+
     }
   },
-  mounted() {
-    this.geolocate();
+
+   computed: {
+    origin() {
+      if (!this.start) return null;
+      return { query: this.start };
+    },
+    destionation() {
+      if (!this.end) return null;
+      return { query: this.end };
+    }
   },
+
+  mounted() {
+    //this.geolocate();
+  },
+
   methods: {
     setPlace(place) {
       this.currentPlace = place;

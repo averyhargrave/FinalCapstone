@@ -18,7 +18,7 @@
                 </router-link>
             </li>
         </ul>
-       <GoogleMap />
+       <GoogleMap :destinations="destinations"/>
     </div>
 </template>
 
@@ -41,9 +41,6 @@ export default {
     },
     data() {
         return {
-            mapsAPI1: "https://maps.googleapis.com/maps/api/directions/json?origin",
-            mapsAPI2: "&destination=",
-            mapsAPI3: "&key=AIzaSyCBm7oNFS6gCTFUEoylMOW5oAT1cgYYkcw", 
             itinerary: [],
             destinations: [],
             itineraryCreated: false
@@ -52,7 +49,7 @@ export default {
     methods: {
         deleteItinerary() {
 
-            ItineraryServices.deleteItinerary(this.itinerary.itineraryId).then(response => {
+            ItineraryServices.deleteItinerary(this.itinerary.itineraryId).then(() => {
                 this.$router.push('/')
             })
         },
