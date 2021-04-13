@@ -15,11 +15,11 @@ set image = 'https://ssl.cdn-redfin.com/photo/159/bigphoto/534/4112534_12_1.jpg'
 where name = 'Historic Little Italy in Cleveland';
 
 update destinations
-set image = 'https://files.slack.com/files-pri/T0GNFLF6D-F01U045LMFG/image.png'
+set image = 'https://ideastream-production.s3.amazonaws.com/styles/feature_image_new/s3/uploads/2019/7/02/MallTowerCityshutterstock_0.jpg?null&itok=RKlmfoE6'
 where name = 'The Mall';
 
 update destinations
-set image = 'https://files.slack.com/files-pri/T0GNFLF6D-F01U73LPLQ3/image.png'
+set image = 'https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fwww.casino.org%2Fnews%2Fwp-content%2Fuploads%2F2019%2F10%2Fjack102819.jpg'
 where name = 'JACK Cleveland Casino';
 
 update destinations
