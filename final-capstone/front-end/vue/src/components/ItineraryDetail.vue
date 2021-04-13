@@ -13,6 +13,7 @@
         <!-- Loop through destinations array and display names after search -->
         <ul>        
             <li v-for="destination in destinations" v-bind:key="destination.destinationId">
+                <button v-on:click="removeFromItinerary(destination)">Remove From Itinerary</button>
                 <router-link :to="{ name: 'DestinationDetail', params: { id: destination.destinationId}}" class="destinationDetail">
                     {{ destination.name }}
                 </router-link>
@@ -62,6 +63,10 @@ export default {
             } else {
             this.itineraryCreated = true;
             }
+        },
+        removeFromItinerary(destination) {
+            const index = this.destinations.indexOf(destination);
+            this.destinations.splice(index, 1);
         }
     }
 }

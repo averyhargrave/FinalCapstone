@@ -132,7 +132,9 @@ export default {
 
         postToItinerary() {
             this.itinerary.forEach((element) => {
-            ItineraryServices.addToItinerary(element, this.selectedItinerary)
+                if(this.selectedItinerary !== element.itineraryId) {
+                    ItineraryServices.addToItinerary(element, this.selectedItinerary)
+                }
         });
             this.$router.push({name:"ItineraryDetail", params:{id:this.selectedItinerary}});
         },
