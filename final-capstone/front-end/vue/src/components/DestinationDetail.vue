@@ -3,6 +3,7 @@
         <h1>{{destination.name}}</h1>
         <!-- drop-down up here that lists through user itineraries -->
         <button>Add to Itinerary</button>
+    
         <select name="SelectItinerary" id="Select Itinerary" v-for="itinerary in itineraries" v-bind:key="itinerary.itineraryId">
             <option value="">Select Itinerary</option>
 
@@ -52,8 +53,11 @@ export default {
         }
 
         
-    }
+    },
+
+
 }
+
 
 </script>
 
