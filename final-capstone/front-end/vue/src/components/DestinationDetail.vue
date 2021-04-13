@@ -11,11 +11,11 @@
         <div class="rating">
             <!-- Thumbs up -->
         <div class="like grow"  v-on:click="thumbsUp">
-            <i class="fa fa-thumbs-up fa-3x like" :class="{'active' : isLiked }" aria-hidden="true" id="like"></i>
+            <i class="fa fa-thumbs-up fa-3x like" :class="{'active' : isLiked && isClicked}" aria-hidden="true" id="like"></i>
         </div>
              <!-- Thumbs down -->
   <div class="dislike grow" v-on:click="thumbsDown">
-    <i class="fa fa-thumbs-down fa-3x like" aria-hidden="true" id="dislike" :class="{'active' : !isLiked }"></i>
+    <i class="fa fa-thumbs-down fa-3x like" aria-hidden="true" id="dislike" :class="{'active' : !isLiked && isClicked}"></i>
   </div>
 
         
@@ -66,20 +66,21 @@ export default {
             itineraries: [],
             userItineraries: [],
             itinerary: [],
-            isLiked: false,
+            isLiked: null,
+            isClicked: false
             
         }
-
-        
     },
 
     methods: {
      thumbsUp() {
         this.isLiked = true
+        this.isClicked = true
     },
 
      thumbsDown() {
         this.isLiked = false
+        this.isClicked = true
     },
 
     postToItinerary() {

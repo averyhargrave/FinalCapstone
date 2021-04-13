@@ -30,4 +30,7 @@ update destinations
 set image = 'https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fsosassociates.com%2Fsites%2Fdefault%2Ffiles%2FCleveland-Metroparks-Zoo.jpg'
 where name = 'Cleveland Metroparks Zoo';
 
+update destinations
+set image = 'https://i.pinimg.com/originals/6b/85/2f/6b852fad91a8439febc3b72838301f88.jpg'
+where name = 'West Side Market';
 commit;
