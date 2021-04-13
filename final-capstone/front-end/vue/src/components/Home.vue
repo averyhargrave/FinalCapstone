@@ -172,11 +172,6 @@ export default {
 
 <style>  /* CSS goes here */
 
-
-    html {
-
-    }
-
     #main {
         height: 100vmax;
     }
@@ -210,7 +205,7 @@ export default {
         display: flex;
         justify-content: center;
         font-weight: bold;
-        color: black;
+        color:gainsboro;
     }
 
     a.destinationDetail {

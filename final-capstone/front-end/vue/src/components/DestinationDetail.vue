@@ -1,6 +1,6 @@
 <template>
     <div class="DestinationDetail" v-if="!isLoading">
-        <h1>{{destination.name}}</h1>
+        <h1 style="text-center">{{destination.name}}</h1>
         <!-- drop-down up here that lists through user itineraries -->
         <button v-on:click="postToItinerary">Add to Itinerary</button>
         
@@ -137,8 +137,8 @@ h2 {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: auto;
-
+    width: 800px;
+    border-radius: 10px;
 
 }
 
