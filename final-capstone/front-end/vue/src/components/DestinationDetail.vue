@@ -2,13 +2,23 @@
     <div class="DestinationDetail" v-if="!isLoading">
         <h1>{{destination.name}}</h1>
         <!-- drop-down up here that lists through user itineraries -->
-        <button>Add to Itinerary</button>
+        <button v-on:click="postToItinerary">Add to Itinerary</button>
+        
+            <select name="oneOption" id="itineraryList" v-model="itinerary">
+            <option v-for="itinerary in userItineraries" :key="itinerary.itineraryId" :value="itinerary.itineraryId">{{itinerary.startingPoint}}</option>
+            </select>
 
+        <div class="rating">
+            <!-- Thumbs up -->
+        <div class="like grow"  v-on:click="thumbsUp">
+            <i class="fa fa-thumbs-up fa-3x like" :class="{'active' : isLiked }" aria-hidden="true" id="like"></i>
+        </div>
+             <!-- Thumbs down -->
+  <div class="dislike grow" v-on:click="thumbsDown">
+    <i class="fa fa-thumbs-down fa-3x like" aria-hidden="true" id="dislike" :class="{'active' : !isLiked }"></i>
+  </div>
 
-        <select name="SelectItinerary" id="Select Itinerary" v-for="itinerary in itineraries" v-bind:key="itinerary.itineraryId">
-            <option value="">Select Itinerary</option>
-
-        </select>
+        
         <!-- pushes you to itineraryDetail -->
         <h2>{{destination.description}}</h2>
         <div class="Hours" v-for="anHour in destination.hours" :key="anHour.hourId">
@@ -22,6 +32,7 @@
         <a :href="destination.website">{{destination.website}}</a>
 
         <img :src="destination.image" alt="Landmark Image" class="center">
+    </div>
     </div>
 </template>
 
@@ -42,8 +53,8 @@ export default {
                 this.isLoading = false;
                 console.log(this.destination)
         
-                ItineraryServices.getItineraryById(this.$store.state.user.id).then(response => {
-                    this.itineraries = response.data;
+                ItineraryServices.getItineraryByUserId(this.$store.state.user.id).then(response => {
+                    this.userItineraries = response.data;
                 })
             })   
         });
@@ -53,14 +64,34 @@ export default {
             destination: {},
             isLoading: true,
             itineraries: [],
-            thumbsUp: ''
+            userItineraries: [],
+            itinerary: [],
+            isLiked: false,
+            
         }
 
         
     },
 
-  } 
+    methods: {
+     thumbsUp() {
+        this.isLiked = true
+    },
 
+     thumbsDown() {
+        this.isLiked = false
+    },
+
+    postToItinerary() {
+        ItineraryServices.addToItinerary(this.destination.destinationId, this.itinerary).then(() => {
+        this.$router.push({name:"ItineraryDetail", params:{id:this.itinerary}});
+        })
+     
+    }
+
+
+  } 
+}
 
 </script>
 
@@ -124,4 +155,29 @@ a {
 
  }
 
+.rating {
+  display: inline-block;
+  width: 100%;
+  margin-top: 40px;
+  padding-top: 40px;
+  text-align: center;
+}
+
+.like,
+.dislike {
+  display: inline-block;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.dislike:hover,
+.like:hover {
+  color: #2EBDD1;
+  transition: all .2s ease-in-out;
+  transform: scale(1.1);
+}
+
+.active {
+  color: #2EBDD1;
+}
 </style>

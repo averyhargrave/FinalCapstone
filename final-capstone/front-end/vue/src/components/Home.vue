@@ -28,7 +28,11 @@
             <input type="text" id="date" name="date" v-model="date"><br>
             <button type="submit">Create Itinerary</button>
         </form>
-                 
+        <br/>
+         <select v-if="userItineraries.length > 0" name="oneOption" id="itineraryList" v-model="selectedItinerary">
+            <option v-for="itinerary in userItineraries" :key="itinerary.itineraryId" :value="itinerary.itineraryId">{{itinerary.startingPoint}}</option>
+            </select>
+            <button v-on:click="viewItinerary">View Itinerary</button>        
                  <router-link :to="{ name: 'register' }" v-if="!this.$store.state.token">Create an account</router-link>
             </form>
             <div v-else>
@@ -158,6 +162,9 @@ export default {
                     this.userItineraries = response.data;
                 })
             });
+        },
+        viewItinerary() {
+             this.$router.push({name:"ItineraryDetail", params:{id:this.selectedItinerary}});
         }
     }
 }
