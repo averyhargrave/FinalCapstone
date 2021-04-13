@@ -10,7 +10,6 @@
             <button  type="submit">Edit Itinerary</button>
         </form>
         <button v-on:click="deleteItinerary">Delete</button>
-
         <!-- Loop through destinations array and display names after search -->
         <ul>        
             <li v-for="destination in destinations" v-bind:key="destination.destinationId">
@@ -19,13 +18,18 @@
                 </router-link>
             </li>
         </ul>
+       <GoogleMap />
     </div>
 </template>
 
 <script>
 import ItineraryServices from '../services/ItineraryServices.js'
+import GoogleMap from '../components/GoogleMap.vue'
 
 export default {
+    components: {
+    GoogleMap
+  },
     name: 'Home',
     created() {
         ItineraryServices.getItineraryByItineraryId(this.$route.params.id).then(response => {
