@@ -7,7 +7,7 @@
             <input type="text" id="startingPoint" name="startingPoint" v-model="itinerary.startingPoint"><br>
             <label for="date">Date:</label><br>
             <input type="text" id="date" name="date" v-model="itinerary.date"><br>
-            <button  type="submit">Edit Itinerary</button>
+            <button type="submit">Edit Itinerary</button>
         </form>
         <button v-on:click="deleteItinerary">Delete</button>
         <!-- Loop through destinations array and display names after search -->
@@ -55,6 +55,13 @@ export default {
         },
         editItinerary() {
             ItineraryServices.editItinerary(this.itinerary.startingPoint, this.itinerary.date, this.itinerary.itineraryId)
+        },
+        changeCreated() {
+             if (this.itineraryCreated === true) {
+                this.itineraryCreated = false;
+            } else {
+            this.itineraryCreated = true;
+            }
         }
     }
 }

@@ -19,14 +19,14 @@
             <option value="listAll">List All</option>
         </select>
         <button v-on:click="filterDestinations">Search</button>    <!-- might need to add something here -->
-        <button v-if="!itineraryCreated" v-on:click="changeCreated">Create Itinerary</button>
-        <button v-if="itineraryCreated" v-on:click="changeCreated">Cancel</button>
-        <form v-if="itineraryCreated" v-on:submit.prevent="createItinerary">
+        <button v-if="!showCreatedForm" v-on:click="changeCreated">Create Itinerary</button>
+        <button v-if="showCreatedForm" v-on:click="changeCreated">Cancel</button>
+        <form v-if="showCreatedForm" v-on:submit.prevent="createItinerary">
             <label for="startingPoint">Starting point:</label><br>
             <input type="text" id="startingPoint" name="startingPoint" v-model="startingPoint"><br>
             <label for="date">Date:</label><br>
             <input type="text" id="date" name="date" v-model="date"><br>
-            <button  type="submit">Create Itinerary</button>
+            <button type="submit">Create Itinerary</button>
         </form>
                  
                  <router-link :to="{ name: 'register' }" v-if="!this.$store.state.token">Create an account</router-link>
@@ -74,13 +74,13 @@ export default {
             itinerary: [],
             userItineraries: [],
             selectedItinerary: null,
-            itineraryCreated: false,
+            showCreatedForm: false,
             startingPoint: '',
             date: ''
         }
     },
     created() {
-        ItineraryServices.getItineraryByItineraryId(this.$store.state.user.id).then(response => {
+        ItineraryServices.getItineraryByUserId(this.$store.state.user.id).then(response => {
             this.userItineraries = response.data
         })
     },
@@ -138,22 +138,24 @@ export default {
         },
 
         changeCreated() {
-            if (this.itineraryCreated === true) {
-                this.itineraryCreated = false;
+            if (this.showCreatedForm === true) {
+                this.showCreatedForm = false;
             } else {
-            this.itineraryCreated = true;
+            this.showCreatedForm = true;
             }
         },
 
         createItinerary() {
             ItineraryServices.createItinerary(this.startingPoint, this.date).then(() => {
+                if (this.showCreatedForm === true) {
+                    this.showCreatedForm = false;
+                } else {
+                this.showCreatedForm = true;
+                }
                 ItineraryServices.getItineraryByUserId(this.$store.state.user.id).then((response) => {
                     this.userItineraries = response.data;
                 })
             });
-            // get the newly created itinerary
-            // add it to userItineraries
-            //this.userItineraries.push()
         }
     }
 }
@@ -161,6 +163,10 @@ export default {
 
 <style>  /* CSS goes here */
 
+
+    html {
+
+    }
 
     #main {
         height: 100vmax;
