@@ -209,18 +209,18 @@ export default {
         display: flex;
         justify-content: center;
         font-weight: bold;
-        color:gainsboro;
+        color:rgb(71, 71, 71);
     }
 
     a.destinationDetail {
-        color: #034f84;
-        background-color: #fefbd8;
+        color: white;
+        background-color: #206994;
         border-radius: 10px;
         width: 325px;
     }
 
     a:hover {
-        color: RGB(73, 251, 53);
+        color: rgb(97, 238, 248);
     }
 
     input {

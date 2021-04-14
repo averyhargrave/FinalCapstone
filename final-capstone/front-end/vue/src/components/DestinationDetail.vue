@@ -1,6 +1,7 @@
 <template>
     <div class="DestinationDetail" v-if="!isLoading">
         <h1>{{destination.name}}</h1>
+        <a :href="destination.website">Website</a>
         <!-- drop-down up here that lists through user itineraries -->
         <button v-on:click="postToItinerary">Add to Itinerary</button>
         
@@ -17,21 +18,23 @@
   <div class="dislike grow" v-on:click="thumbsDown">
     <i class="fa fa-thumbs-down fa-3x like" aria-hidden="true" id="dislike" :class="{'active' : !isLiked && isClicked}"></i>
   </div>
-
-        
-        <!-- pushes you to itineraryDetail -->
+        <div class="both">
         <h2>{{destination.description}}</h2>
-        <div class="Hours" v-for="anHour in destination.hours" :key="anHour.hourId">
+        <div class="Hours" >
+            <ul>
+                <li v-for="anHour in destination.hours" :key="anHour.hourId"> 
             <h3>{{anHour.dayOfWeek}}: 
                 {{anHour.open}} -
                 {{anHour.close}}  
 
            </h3>
+                </li>
+            </ul>
+            
 
         </div>
-        <a :href="destination.website">{{destination.website}}</a>
-
         <img :src="destination.image" alt="Landmark Image" class="center">
+    </div>
     </div>
     </div>
 </template>
@@ -102,7 +105,7 @@ h1 {
     display: flex;
     color: black;
     justify-content: center;
-
+    margin-top: -10px;
 }
 
 button {
@@ -115,6 +118,7 @@ select {
     display: flex;
     justify-content: center;
     margin: auto;
+    margin-top: 10px;
 }
 
 h2 {
@@ -123,15 +127,17 @@ h2 {
     justify-content: center;
     margin: 20px;
     padding: 20px;
+    grid-area: description;
+}
+
+li {
+    color: black;
+    padding: 8px;
 }
 
 .Hours {
-    display: flex;
-    color: black;
-    justify-content: center; 
-    margin: -30px;
-    
-    
+    color: black; 
+    grid-area: hours;
 }
 
 .center {
@@ -140,26 +146,26 @@ h2 {
     margin-right: auto;
     width: 800px;
     border-radius: 10px;
-
 }
-
 
 a {
     display: flex;
     color: black;
     justify-content: center;
     margin: 30px;
+    margin-top: -80px;
+    font-size: 30px;
 }
  
  a:hover {
-     color: red
+     color: rgb(48, 196, 241)
 
  }
 
 .rating {
   display: inline-block;
   width: 100%;
-  margin-top: 40px;
+  margin-top: -40px;
   padding-top: 40px;
   text-align: center;
 }
@@ -180,5 +186,24 @@ a {
 
 .active {
   color: #2EBDD1;
+}
+
+img {
+    grid-area: image;
+}
+
+.both {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+    "description description"
+    "image hours"
+    
+    ; 
+}
+
+.DestinationDetail {
+    background: linear-gradient(to bottom, #ffffff 0%, #99ccff
+100%);
 }
 </style>

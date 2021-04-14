@@ -46,7 +46,7 @@ export default {
   data() {
     
     return {
-      image: { backgroundImage: "url(https://cleveland-bookkeeping.com/wp-content/uploads/2016/06/Moonrise-over-the-Cleveland-Ohio-skyline-and-Lake-Erie.jpg)"},
+      image: { backgroundImage: "url(https://www.thisiscleveland.com/getattachment/5e023d1b-903e-44c8-ac13-f3c3faafcff3/Cleveland-Ohio-in-the-early-evening.jpg)"},
     
       user: {
         username: "",

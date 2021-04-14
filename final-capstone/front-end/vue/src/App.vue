@@ -18,6 +18,7 @@
     height: 0%;
     display: flex;
     justify-content: center;
+    color: red;
   }
   
 </style>

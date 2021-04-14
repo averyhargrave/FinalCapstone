@@ -2,7 +2,7 @@
     <div :style="image" class="background-image">
     <div class="ItineraryDetail">
         <h1 style="margin-top: 100px;">{{itinerary.startingPoint}}</h1>
-        <button class="edit" v-on:click="itineraryCreated = !itineraryCreated">Edit</button>
+        <button class="center" v-on:click="itineraryCreated = !itineraryCreated">Edit</button>
         
         
         <form class="center" v-if="itineraryCreated" v-on:submit.prevent="editItinerary">
@@ -23,7 +23,7 @@
             </li>
         </ul>
         
-       <button class="delete" v-on:click="deleteItinerary">Delete</button>     
+       <button class="center" v-on:click="deleteItinerary">Delete</button>     
        <GoogleMap class="map" :destinations="destinations"/>
     </div>
     </div>
@@ -51,7 +51,7 @@ export default {
             itinerary: [],
             destinations: [],
             itineraryCreated: false,
-            image: { backgroundImage: "url(https://cleveland-bookkeeping.com/wp-content/uploads/2016/06/Moonrise-over-the-Cleveland-Ohio-skyline-and-Lake-Erie.jpg)"}
+            image: { backgroundImage: "url(https://www.thisiscleveland.com/getattachment/5e023d1b-903e-44c8-ac13-f3c3faafcff3/Cleveland-Ohio-in-the-early-evening.jpg)"}
         }
     },
     methods: {
@@ -84,20 +84,21 @@ export default {
 </script>
 
 <style scoped>
-
-.ItineraryDetail {
-    
-}
-
 h1 {
     display: flex;
     justify-content: center;
     
 }
 
+label {
+    color: white;
+    background-color:#206994;
+}
+
 .center {
     display: flex;
     justify-content: center;
+   
 }
 
 .destinationDetail {
