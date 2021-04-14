@@ -22,30 +22,29 @@
         <button v-if="!showCreatedForm" v-on:click="changeCreated">Create Itinerary</button>
         <button v-if="showCreatedForm" v-on:click="changeCreated">Cancel</button>
         <form v-if="showCreatedForm" v-on:submit.prevent="createItinerary">
-            <label for="startingPoint">Starting point:</label><br>
-            <input type="text" id="startingPoint" name="startingPoint" v-model="startingPoint"><br>
-            <label for="date">Date:</label><br>
-            <input type="text" id="date" name="date" v-model="date"><br>
-            <button type="submit">Create Itinerary</button>
+            <label for="startingPoint" class="center">Starting point:</label><br>
+            <input type="text" class="center" id="startingPoint" name="startingPoint" v-model="startingPoint"><br>
+            <label for="date" class="center">Date:</label><br>
+            <input type="text" id="date" name="date" v-model="date" class="center"><br>
+            <button type="submit" class="center">Create Itinerary</button>
         </form>
         <br/>
-         <select v-if="userItineraries.length > 0" name="oneOption" id="itineraryList" v-model="selectedItinerary">
+         <select v-if="userItineraries.length > 0" name="oneOption" id="itineraryList" class="center" v-model="selectedItinerary">
             <option v-for="itinerary in userItineraries" :key="itinerary.itineraryId" :value="itinerary.itineraryId">{{itinerary.startingPoint}}</option>
             </select>
-            <button v-on:click="viewItinerary">View Itinerary</button>        
+            <button class="center" v-on:click="viewItinerary">View Itinerary</button>        
                  <router-link :to="{ name: 'register' }" v-if="!this.$store.state.token">Create an account</router-link>
             </form>
             <div v-else>
-            <button v-on:click="postToItinerary"> Add to Itinerary </button> 
-            <select v-if="userItineraries.length > 0" name="oneOption" id="itineraryList" v-model="selectedItinerary">
+            <button v-on:click="postToItinerary" class="center"> Add to Itinerary </button> 
+            <select v-if="userItineraries.length > 0" name="oneOption" id="itineraryList" v-model="selectedItinerary" class="center">
             <option v-for="itinerary in userItineraries" :key="itinerary.itineraryId" :value="itinerary.itineraryId">{{itinerary.startingPoint}}</option>
             </select>
-                
                 <!-- Loop through destinations array and display names after search -->
                 <ul>
                     <span style="background-color:white;"></span>
                     
-                    <li v-for="destination in destinations" v-bind:key="destination.destinationId">
+                    <li class="checks" v-for="destination in destinations" v-bind:key="destination.destinationId">
                         <input type="checkbox" v-on:change="addToItinerary($event, destination.destinationId)"/>
                         <router-link :to="{ name: 'DestinationDetail', params: { id: destination.destinationId}}" class="destinationDetail">
                             {{ destination.name }}
@@ -53,12 +52,12 @@
                         <!-- Button to create or add to itinerary -->
                     </li>
                 </ul>
-                <button v-on:click="cancelSearch">Cancel</button>
+                <button v-on:click="cancelSearch" class="center">Cancel</button>
             </div>
             <!--<router-link>See all landmarks</router-link> -->
+        </div>
+        </div>
     </div>
-        </div>
-        </div>
        <!-- <img href="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-cont[…]F11%2Fskyline-cleveland-ohio-VISITCLEVELAND0917.jpg&q=85"></img> -->
 </template>
 
@@ -171,7 +170,6 @@ export default {
 </script>
 
 <style>  /* CSS goes here */
-
     #main {
         height: 100vmax;
     }
@@ -180,12 +178,6 @@ export default {
         color: white;
     }
     
-    div.home {
-        display: flex;
-        flex-direction: column;
-        justify-items: center;
-        align-items: center;
-    }
 
     div h1 {
         font-size: 50px;
@@ -211,8 +203,8 @@ export default {
     a.destinationDetail {
         color: #034f84;
         background-color: #fefbd8;
-        margin-top: 5px;
         border-radius: 10px;
+        width: 325px;
     }
 
     a:hover {
@@ -224,7 +216,7 @@ export default {
     }
 
     button {
-        padding: 2px;
+        margin: 5px;
     }
 
     button:hover {
@@ -243,4 +235,16 @@ export default {
         background-color: white;
     }
 
+    .center {
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        margin-top: 15px;
+
+    }
+    .checks {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+    }
 </style>

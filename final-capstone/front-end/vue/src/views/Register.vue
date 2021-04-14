@@ -1,7 +1,7 @@
 <template>
   <div :style="image" id="register" class="text-center background-image" >
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
+      <h1 style="margin-top: 100px;" class="h3 mb-3 font-weight-normal">Create Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
@@ -90,6 +90,7 @@ export default {
 </script>
 
 <style>
+
 #register {
   height: 100vmax;
   background-repeat: no-repeat;

@@ -73,6 +73,7 @@ export default {
 </script>
 
 <style scoped>
+
 .ItineraryDetail {
     background-color: black;
 }

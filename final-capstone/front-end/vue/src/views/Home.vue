@@ -24,9 +24,8 @@ export default {
 
  div.background-image {
         background-size: cover;
-        height: 100vmax;
         background-repeat: no-repeat;
-        margin: -100px;
+        height: 100%;
     }
 
 

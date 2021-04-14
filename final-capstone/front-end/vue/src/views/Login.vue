@@ -2,7 +2,7 @@
 <div :style="image" class="background-image">
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+      <h1 style="margin-top: 100px;" class="h3 mb-3 font-weight-normal">Please Sign In</h1>
       <div
         class="alert alert-danger"
         role="alert"
@@ -82,6 +82,7 @@ export default {
 <style>
 
 div.background-image {
+        background-attachment: fixed;
         background-size: cover;
         height: 100vmax;
         background-repeat: no-repeat;
