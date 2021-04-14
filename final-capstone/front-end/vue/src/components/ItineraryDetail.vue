@@ -1,25 +1,31 @@
 <template>
+    <div :style="image" class="background-image">
     <div class="ItineraryDetail">
-        <h1>Itinerary of {{itinerary.date}}</h1>
-        <button v-on:click="itineraryCreated = !itineraryCreated">Edit</button>
-        <form v-if="itineraryCreated" v-on:submit.prevent="editItinerary">
-            <label for="startingPoint">Starting point:</label><br>
+        <h1 style="margin-top: 100px;">{{itinerary.startingPoint}}</h1>
+        <button class="edit" v-on:click="itineraryCreated = !itineraryCreated">Edit</button>
+        
+        
+        <form class="center" v-if="itineraryCreated" v-on:submit.prevent="editItinerary">
+            <label for="startingPoint">Itinerary Name:</label><br>
             <input type="text" id="startingPoint" name="startingPoint" v-model="itinerary.startingPoint"><br>
             <label for="date">Date:</label><br>
             <input type="text" id="date" name="date" v-model="itinerary.date"><br>
-            <button type="submit">Edit Itinerary</button>
+            <button type="submit">Edit Itinerary </button>
         </form>
-        <button v-on:click="deleteItinerary">Delete</button>
+        
         <!-- Loop through destinations array and display names after search -->
         <ul>        
-            <li v-for="destination in destinations" v-bind:key="destination.destinationId">
+            <li class="center" v-for="destination in destinations" v-bind:key="destination.destinationId">
                 <button v-on:click="removeFromItinerary(destination)">Remove From Itinerary</button>
                 <router-link :to="{ name: 'DestinationDetail', params: { id: destination.destinationId}}" class="destinationDetail">
                     {{ destination.name }}
                 </router-link>
             </li>
         </ul>
-       <GoogleMap :destinations="destinations"/>
+        
+       <button class="delete" v-on:click="deleteItinerary">Delete</button>     
+       <GoogleMap class="map" :destinations="destinations"/>
+    </div>
     </div>
 </template>
 
@@ -44,7 +50,8 @@ export default {
         return {
             itinerary: [],
             destinations: [],
-            itineraryCreated: false
+            itineraryCreated: false,
+            image: { backgroundImage: "url(https://cleveland-bookkeeping.com/wp-content/uploads/2016/06/Moonrise-over-the-Cleveland-Ohio-skyline-and-Lake-Erie.jpg)"}
         }
     },
     methods: {
@@ -55,7 +62,10 @@ export default {
             })
         },
         editItinerary() {
-            ItineraryServices.editItinerary(this.itinerary.startingPoint, this.itinerary.date, this.itinerary.itineraryId)
+            ItineraryServices.editItinerary(this.itinerary.startingPoint, this.itinerary.date, this.itinerary.itineraryId).then(() => {
+                this.itineraryCreated = false;
+            })
+            
         },
         changeCreated() {
              if (this.itineraryCreated === true) {
@@ -76,7 +86,51 @@ export default {
 <style scoped>
 
 .ItineraryDetail {
-    background-color: black;
+    
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.destinationDetail {
+    display: flex;
+    justify-content: center;
+}
+
+form.center {
+    display: flex;
+    align-items: center;
+}
+
+.delete {
+    display: flex;
+    margin-left: auto;
+    margin-right: 20%;
+    margin-top: 50px;
+}
+
+.edit {
+    margin-left: 20%;
+
+}
+div.background-image {
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100%;
+        
+    }
+
+.map {
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 </style>
