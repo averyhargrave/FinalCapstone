@@ -8,7 +8,7 @@
             </div>
         <div> <!-- We need to figure out how to do a search box up here -->
             <form v-if="!isSubmitted" v-on:submit.prevent="filterDestinations">
-                <input v-model="searchTerm" placeholder="Search for a landmark..."/>  <!-- two-way binds to searchTerm, attach to API request -->
+                <input class="searchBox" v-model="searchTerm" placeholder="Search for a landmark..."/>  <!-- two-way binds to searchTerm, attach to API request -->
                 <label for="SearchBy"></label>
 
         <select name="SearchBy" id="Search By" v-model="searchType">
@@ -278,5 +278,20 @@ export default {
     .create {
         
         padding-bottom: 50px;
+    }
+    select {
+        border-radius: 5px;
+    }
+
+    .searchBox {
+        border-radius: 5px;
+    }
+
+    #date {
+        border-radius: 5px;
+    }
+
+    #startingPoint{
+        border-radius: 5px;
     }
 </style>
