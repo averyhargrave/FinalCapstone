@@ -37,7 +37,7 @@
             </form>
             <div v-else>
             <button v-on:click="postToItinerary" class="center"> Add to Itinerary </button> 
-            <select v-if="userItineraries.length > 0" name="oneOption" id="itineraryList" v-model="selectedItinerary" class="center">
+            <select v-if="userItineraries.length > 0" name="oneOption" id="itineraryList" v-model="selectedItinerary" class="center" v-on:change="getDestinationsForItinerary">
             <option v-for="itinerary in userItineraries" :key="itinerary.itineraryId" :value="itinerary.itineraryId">{{itinerary.startingPoint}}</option>
             </select>
                 <!-- Loop through destinations array and display names after search -->
@@ -45,7 +45,7 @@
                     <span style="background-color:white;"></span>
                     
                     <li class="checks" v-for="destination in destinations" v-bind:key="destination.destinationId">
-                        <input type="checkbox" v-on:change="addToItinerary($event, destination.destinationId)"/>
+                        <input type="checkbox" v-on:change="addToItinerary($event, destination.destinationId)"  v-bind:id="destination.destinationId"/>
                         <router-link :to="{ name: 'DestinationDetail', params: { id: destination.destinationId}}" class="destinationDetail">
                             {{ destination.name }}
                         </router-link>
@@ -79,7 +79,8 @@ export default {
             selectedItinerary: null,
             showCreatedForm: false,
             startingPoint: '',
-            date: ''
+            date: '',
+            selectedDestinations: []
         }
     },
     created() {
@@ -124,8 +125,10 @@ export default {
         addToItinerary(event, destinationId) {
             
             if (event.target.checked) {
+                if (!this.selectedDestinations.includes(event.target.id)) {
+                    this.itinerary.push(destinationId);
+                }
                 
-                this.itinerary.push(destinationId);
             } else {
                 this.itinerary = this.itinerary.filter(destination =>{
                     return destination !== destinationId
@@ -135,7 +138,8 @@ export default {
 
         postToItinerary() {
             this.itinerary.forEach((element) => {
-                if(this.selectedItinerary !== element.itineraryId) {
+                console.log(element)
+                if(!this.selectedDestinations.includes(element)) {
                     ItineraryServices.addToItinerary(element, this.selectedItinerary)
                 }
         });
@@ -164,6 +168,13 @@ export default {
         },
         viewItinerary() {
              this.$router.push({name:"ItineraryDetail", params:{id:this.selectedItinerary}});
+        },
+        getDestinationsForItinerary() {
+            ItineraryServices.viewDestinationsByItineraryId(this.selectedItinerary).then(response => {
+                response.data.forEach(destination => {
+                    this.selectedDestinations.push(destination.destinationId)
+                })
+            })
         }
     }
 }
