@@ -235,6 +235,7 @@ export default {
 
     button {
         margin: 5px;
+        border-radius:10px;
     }
 
     button:hover {
