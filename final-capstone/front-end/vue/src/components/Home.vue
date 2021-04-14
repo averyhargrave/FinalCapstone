@@ -219,6 +219,10 @@ export default {
         background-color: #206994;
         border-radius: 10px;
         width: 325px;
+        font-family: "Lucida Handwriting", cursive;
+        font-weight: lighter;
+        font-size: small;
+        text-decoration: none;
     }
 
     a:hover {
