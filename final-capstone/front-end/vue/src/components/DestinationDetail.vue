@@ -5,7 +5,7 @@
         <!-- drop-down up here that lists through user itineraries -->
         <button v-on:click="postToItinerary">Add to Itinerary</button>
         
-            <select name="oneOption" id="itineraryList" v-model="itinerary">
+          <select v-if="userItineraries.length > 0" name="oneOption" id="itineraryList" v-model="selectedItinerary">
             <option v-for="itinerary in userItineraries" :key="itinerary.itineraryId" :value="itinerary.itineraryId">{{itinerary.startingPoint}}</option>
             </select>
 
@@ -46,6 +46,8 @@ import ItineraryServices from '../services/ItineraryServices'
 
 export default {
     created() {
+
+
         
         DestinationServices.getADestination(this.$route.params.id).then(response => {
             this.destination = response.data[0]
@@ -68,9 +70,9 @@ export default {
             isLoading: true,
             itineraries: [],
             userItineraries: [],
-            itinerary: [],
             isLiked: null,
-            isClicked: false
+            isClicked: false,
+            selectedItinerary: null
             
         }
     },

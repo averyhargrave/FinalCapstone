@@ -29,7 +29,7 @@
             <button type="submit" class="center">Create Itinerary</button>
         </form>
         <br/>
-         <select v-if="userItineraries.length > 0" name="oneOption" id="itineraryList" class="center" v-model="selectedItinerary">
+        <select v-if="userItineraries.length > 0" name="oneOption" id="itineraryList" class="center" v-model="selectedItinerary">
             <option v-for="itinerary in userItineraries" :key="itinerary.itineraryId" :value="itinerary.itineraryId">{{itinerary.startingPoint}}</option>
             </select>
             <button class="center" v-on:click="viewItinerary">View Itinerary</button>        
