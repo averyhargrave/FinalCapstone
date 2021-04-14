@@ -5,9 +5,9 @@
         <!-- drop-down up here that lists through user itineraries -->
         <button v-on:click="postToItinerary">Add to Itinerary</button>
         
-          <select v-if="userItineraries.length > 0" name="oneOption" id="itineraryList" v-model="selectedItinerary">
-            <option v-for="itinerary in userItineraries" :key="itinerary.itineraryId" :value="itinerary.itineraryId">{{itinerary.startingPoint}}</option>
-            </select>
+          <select v-if="userItineraries.length > 0" v-model="selectedItinerary">
+          <option v-for="itinerary in userItineraries" :key="itinerary.itineraryId" :value="itinerary.itineraryId">{{itinerary.startingPoint}}</option>
+          </select>
 
         <div class="rating">
             <!-- Thumbs up -->
@@ -55,11 +55,12 @@ export default {
 
             DestinationServices.getDestinationHours(this.$route.params.id).then(res => {
                 this.destination.hours = res.data
-                this.isLoading = false;
+               
                 console.log(this.destination)
         
                 ItineraryServices.getItineraryByUserId(this.$store.state.user.id).then(response => {
                     this.userItineraries = response.data;
+                     this.isLoading = false;
                 })
             })   
         });

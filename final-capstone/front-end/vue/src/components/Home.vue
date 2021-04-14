@@ -8,7 +8,7 @@
             </div>
         <div> <!-- We need to figure out how to do a search box up here -->
             <form v-if="!isSubmitted" v-on:submit.prevent="filterDestinations">
-                <input v-model="searchTerm" placeholder="Search for a landmark"/>  <!-- two-way binds to searchTerm, attach to API request -->
+                <input v-model="searchTerm" placeholder="Search for a landmark..."/>  <!-- two-way binds to searchTerm, attach to API request -->
                 <label for="SearchBy"></label>
 
         <select name="SearchBy" id="Search By" v-model="searchType">
@@ -21,12 +21,12 @@
         <button v-on:click="filterDestinations">Search</button>    <!-- might need to add something here -->
         <button v-if="!showCreatedForm" v-on:click="changeCreated">Create Itinerary</button>
         <button v-if="showCreatedForm" v-on:click="changeCreated">Cancel</button>
-        <form v-if="showCreatedForm" v-on:submit.prevent="createItinerary">
-            <label for="startingPoint" class="center">Itinerary name:</label><br>
-            <input type="text" class="center" id="startingPoint" name="startingPoint" v-model="startingPoint"><br>
-            <label for="date" class="center">Date:</label><br>
-            <input type="text" id="date" name="date" v-model="date" class="center"><br>
-            <button type="submit" class="center">Create Itinerary</button>
+        <form class="create" v-if="showCreatedForm" v-on:submit.prevent="createItinerary">
+            <label for="startingPoint"></label><br>
+            <input type="text" class="center2" id="startingPoint" name="startingPoint" v-model="startingPoint" placeholder="Itinerary Name..."><br>
+            <label for="date"></label><br>
+            <input type="text" id="date" name="date" v-model="date" class="center" placeholder="Date of Travel..."><br>
+            <button type="submit" class="center2">Create Itinerary</button>
         </form>
         <br/>
         <select v-if="userItineraries.length > 0" name="oneOption" id="itineraryList" class="center" v-model="selectedItinerary">
@@ -188,6 +188,8 @@ export default {
     
     label {
         color: white;
+        background-color: #206994; 
+        width: 100px;
     }
     
 
@@ -247,6 +249,14 @@ export default {
         background-color: white;
     }
 
+    .center2 {
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        margin-top: 15px;
+
+    }
+
     .center {
         display: flex;
         justify-content: center;
@@ -258,5 +268,10 @@ export default {
         display: flex;
         align-items: center;
         margin-top: 20px;
+    }
+
+    .create {
+        
+        padding-bottom: 50px;
     }
 </style>
