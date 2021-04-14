@@ -37,5 +37,10 @@ addToItinerary(destinationId, itineraryId) {
 
 viewDestinationsByItineraryId(itineraryId) {
     return axios.get(`/viewDestinationsByItineraryId/${itineraryId}`)
+},
+
+deleteDestinationFromItinerary(destinationId) {
+    return axios.delete(`/deleteDestination/${destinationId}`)
 }
+
 }

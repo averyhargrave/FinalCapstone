@@ -23,12 +23,14 @@ public interface ItineraryDAO {
 	public List<Itinerary> viewItineraryByUser (Long userId);
 	
 	public List<Itinerary> viewItineraryByDate (String date);
+	
 	// update 
 	
 	public void updateItinerary (String startingPoint, String date, Long itineraryId);
 	
 	
 	// delete 
+	public void deleteDestinationFromItinerary(Long destinationId);
 	
 	public void deleteItinerary (Long itineraryId);
 	

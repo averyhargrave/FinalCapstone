@@ -93,6 +93,12 @@ public void deleteItinerary(@PathVariable Long itineraryId) {
 
 }
 
+@RequestMapping(value = "/deleteDestination/{id}", method = RequestMethod.DELETE)
+public void deleteDestination(@PathVariable Long id) {
+	itineraryDAO.deleteDestinationFromItinerary(id);
+
+}
+
 @RequestMapping(value = "/updateItinerary/{itineraryId}", method = RequestMethod.PUT)
 public void updateItinerary(@PathVariable Long itineraryId, @RequestBody Itinerary itinerary) {
 	itineraryDAO.updateItinerary(itinerary.getStartingPoint(), itinerary.getDate(), itineraryId);

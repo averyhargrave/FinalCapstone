@@ -110,6 +110,14 @@ public class JDBCItineraryDAO implements ItineraryDAO {
 		
 
 	}
+	
+	@Override
+	public void deleteDestinationFromItinerary(Long destinationId) {
+		String deleteDestFromItin = " DELETE " +
+									"FROM itinerary_destination " +
+									"WHERE destination_id = ? ";
+		jdbcTemplate.update(deleteDestFromItin, destinationId);
+	}
 
 	private Itinerary mapRowToItinerary(SqlRowSet results) {
 		Itinerary itinerary = new Itinerary(); 

@@ -67,6 +67,7 @@ export default {
         removeFromItinerary(destination) {
             const index = this.destinations.indexOf(destination);
             this.destinations.splice(index, 1);
+            ItineraryServices.deleteDestinationFromItinerary(destination.destinationId);
         }
     }
 }

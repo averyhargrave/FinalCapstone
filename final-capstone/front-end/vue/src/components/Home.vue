@@ -22,7 +22,7 @@
         <button v-if="!showCreatedForm" v-on:click="changeCreated">Create Itinerary</button>
         <button v-if="showCreatedForm" v-on:click="changeCreated">Cancel</button>
         <form v-if="showCreatedForm" v-on:submit.prevent="createItinerary">
-            <label for="startingPoint" class="center">Starting point:</label><br>
+            <label for="startingPoint" class="center">Itinerary name:</label><br>
             <input type="text" class="center" id="startingPoint" name="startingPoint" v-model="startingPoint"><br>
             <label for="date" class="center">Date:</label><br>
             <input type="text" id="date" name="date" v-model="date" class="center"><br>
