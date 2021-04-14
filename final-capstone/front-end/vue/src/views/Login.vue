@@ -1,4 +1,5 @@
 <template>
+<div :style="image" class="background-image">
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
       <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
@@ -33,6 +34,7 @@
       <button type="submit">Sign in</button>
     </form>
   </div>
+  </div>
 </template>
 
 <script>
@@ -42,7 +44,10 @@ export default {
   name: "login",
   components: {},
   data() {
+    
     return {
+      image: { backgroundImage: "url(https://cleveland-bookkeeping.com/wp-content/uploads/2016/06/Moonrise-over-the-Cleveland-Ohio-skyline-and-Lake-Erie.jpg)"},
+    
       user: {
         username: "",
         password: ""
@@ -50,6 +55,7 @@ export default {
       invalidCredentials: false
     };
   },
+
   methods: {
     login() {
       authService
@@ -74,6 +80,13 @@ export default {
 </script>
 
 <style>
+
+div.background-image {
+        background-size: cover;
+        height: 100vmax;
+        background-repeat: no-repeat;
+        margin: -100px;
+    }
 
 form.form-signin {
   display: flex;
