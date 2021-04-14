@@ -125,7 +125,7 @@ div.background-image {
         background-size: cover;
         background-repeat: no-repeat;
         height: 100%;
-        
+        padding-top: 10px;
     }
 
 .map {
