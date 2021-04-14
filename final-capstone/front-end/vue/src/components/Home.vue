@@ -124,6 +124,7 @@ export default {
 
         addToItinerary(event, destinationId) {
             
+            
             if (event.target.checked) {
                 if (!this.selectedDestinations.includes(event.target.id)) {
                     this.itinerary.push(destinationId);
