@@ -4,7 +4,6 @@
         <a :href="destination.website">Visit Website</a>
         <!-- drop-down up here that lists through user itineraries -->
         <button v-on:click="postToItinerary">Add to Itinerary</button>
-        
           <select v-if="userItineraries.length > 0" name="oneOption" id="itineraryList" v-model="selectedItinerary">
           <option v-for="itinerary in userItineraries" :key="itinerary.itineraryId" :value="itinerary.itineraryId">{{itinerary.startingPoint}}</option>
           </select>
@@ -90,8 +89,8 @@ export default {
     },
 
     postToItinerary() {
-        ItineraryServices.addToItinerary(this.destination.destinationId, this.itinerary).then(() => {
-        this.$router.push({name:"ItineraryDetail", params:{id:this.itinerary}});
+        ItineraryServices.addToItinerary(this.destination.destinationId, this.selectedItinerary).then(() => {
+        this.$router.push({name:"ItineraryDetail", params:{id:this.selectedItinerary}});
         })
      
     }
@@ -170,8 +169,6 @@ a {
 .rating {
   display: inline-block;
   width: 100%;
-  margin-top: -40px;
-  padding-top: 40px;
   text-align: center;
 }
 
