@@ -1,6 +1,6 @@
 <template> <!-- HTML goes here -->
     <div id="main">
-        <h1>Explore Cleveland</h1>
+        <h1>Conquest Cleveland</h1>
         <div class="destinations">
             <div class="status-message error" v-show="errorMsg != ''">{{errorMsg}}</div>
             <div class="loading" v-if="isLoading">
@@ -219,9 +219,9 @@ export default {
         background-color: #206994;
         border-radius: 10px;
         width: 325px;
-        font-family: "Lucida Handwriting", cursive;
+        font-family: Tahoma;
         font-weight: lighter;
-        font-size: small;
+        font-size: medium;
         text-decoration: none;
     }
 

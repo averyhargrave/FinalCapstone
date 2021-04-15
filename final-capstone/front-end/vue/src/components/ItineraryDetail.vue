@@ -1,15 +1,14 @@
 <template>
     <div :style="image" class="background-image">
     <div class="ItineraryDetail">
-        <h1 style="margin-top: 100px;">{{itinerary.startingPoint}}</h1>
+        <h1 style="margin-top: 100px; font-family: Garamond;">{{itinerary.startingPoint}}</h1>
+        <h2 style="font-family: Garamond;">{{itinerary.date}}</h2>
         <button class="center" v-on:click="itineraryCreated = !itineraryCreated">Edit</button>
         
         
         <form class="center" v-if="itineraryCreated" v-on:submit.prevent="editItinerary">
-            <label for="startingPoint">Itinerary Name:</label><br>
-            <input type="text" id="startingPoint" name="startingPoint" v-model="itinerary.startingPoint"><br>
-            <label for="date">Date:</label><br>
-            <input type="text" id="date" name="date" v-model="itinerary.date"><br>
+            <input type="text" id="startingPoint" name="startingPoint" v-model="itinerary.startingPoint" placeholder="Itinerary Name"><br>
+            <input type="text" id="date" name="date" v-model="itinerary.date" placeholder="Date of Travel"><br>
             <button type="submit">Edit Itinerary </button>
         </form>
         
@@ -84,10 +83,18 @@ export default {
 </script>
 
 <style scoped>
-h1 {
+h1{
     display: flex;
     justify-content: center;
     
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+    color: white;
+    margin-top: -35px;
+    font-size:xx-large;
 }
 
 label {

@@ -1,11 +1,11 @@
 <template>
     <div class="DestinationDetail" v-if="!isLoading">
         <h1>{{destination.name}}</h1>
-        <a :href="destination.website">Website</a>
+        <a :href="destination.website">Visit Website</a>
         <!-- drop-down up here that lists through user itineraries -->
         <button v-on:click="postToItinerary">Add to Itinerary</button>
         
-          <select v-if="userItineraries.length > 0" v-model="selectedItinerary">
+          <select v-if="userItineraries.length > 0" name="oneOption" id="itineraryList" v-model="selectedItinerary">
           <option v-for="itinerary in userItineraries" :key="itinerary.itineraryId" :value="itinerary.itineraryId">{{itinerary.startingPoint}}</option>
           </select>
 
@@ -109,6 +109,8 @@ h1 {
     color: black;
     justify-content: center;
     margin-top: -10px;
+    margin-bottom: 100px;
+    font-family:Tahoma, Verdana, sans-serif
 }
 
 button {
